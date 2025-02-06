@@ -1,0 +1,68 @@
+#!/bin/bash
+
+#If environment variable DEBUG is set to "true" bash debug will be set. Set Debug to "verbose" for more verbose debug information
+if [ "${MY_DEBUG,,}" == "true" ]; then set -x; elif [ "${MY_DEBUG,,}" == "verbose" ]; then set -xv; fi
+
+set -euo pipefail
+IFS=$'\n\t'
+temp_folder=$(mktemp -d -t tmp.XXXXXXXXXX)
+cd $temp_folder
+
+function finish {
+    rm -rf "$temp_folder"
+}
+
+trap finish EXIT
+
+# Define the default safe folder location
+SAFE_FOLDER=${SAFE_FOLDER:-$HOME/Vaults/Safe}
+
+# Function to log into Bitwarden and handle session management
+bw_login() {
+    local bitwarden=${1:-"remote"}  # Default to "remote" if no argument is given
+
+    # Logout from any existing session (ignores errors if already logged out)
+    bw logout >/dev/null 2>&1 || true
+
+    # Define password file and OTP code
+    PASSWORD_FILE=${PASSWORD_FILE:-".bw.${bitwarden}"}
+    OTP_CODE=${OTP_CODE:-"$(cat "$SAFE_FOLDER/$PASSWORD_FILE.otp" | oathtool)"}
+
+    # Configure Bitwarden server based on local or remote usage
+    if [ "$bitwarden" == "local" ]; then
+        bw config server "https://vaultwarden.xome.duckdns.org"
+    else
+        bw config server "https://vault.bitwarden.com"
+    fi
+
+    # Attempt to log in and retrieve a session key
+    BW_SESSION=$(bw login "${BW_USER:-dxas90@gmail.com}" --method 0 --code "$OTP_CODE" --passwordfile "$SAFE_FOLDER/$PASSWORD_FILE" --raw)
+
+    # Check if login was successful
+    if [ -n "$BW_SESSION" ]; then
+        echo "export BW_SESSION=\"$BW_SESSION\"" > ~/.bw_session
+        export BW_SESSION="$BW_SESSION"
+
+        # Unlock Bitwarden vault and sync data
+        bw unlock --check --passwordfile "$SAFE_FOLDER/$PASSWORD_FILE"
+        bw sync
+    else
+        echo "Bitwarden login failed."
+        exit 1
+    fi
+}
+
+# Handle command-line arguments for local or remote login
+case "${1:-''}" in
+    local)
+        bw_login "local"
+        ;;
+    remote)
+        bw_login
+        ;;
+    *)
+        echo "Usage: $(basename "$0") local|remote"
+        ;;
+esac
+
+# vim: set syn=sh ts=4 sw=4 et filetype=sh
