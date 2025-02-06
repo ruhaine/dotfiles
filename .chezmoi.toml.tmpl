@@ -1,28 +1,7 @@
-[data.tools.jq]
-    version = "1.7.1"
-[data.tools.bw]
-    version = "2025.1.2"
-[data.tools.bws]
-    version = "1.0.0"
-[data.tools.direnv]
-    version = "2.32.3"
-[data.tools.kubectl]
-    version = "1.32.1"
-[data.tools.k3d]
-    version = "5.8.1"
-[data.tools.autok3s]
-    version = "0.9.3"
-[data.tools.flux]
-    version = "2.4.0"
-[data.tools.age]
-    version = "1.2.1"
-[data.tools.sops]
-    version = "3.9.4"
-[data.tools.cloudflared]
-    version = "2025.2.0"
-[data.tools.go_task]
-    version = "3.41.0"
-[data.tools.vagrant]
-    version = "2.4.3"
-[data.tools.rclone]
-    version = "1.69.0"
+encryption = "age"
+[age]
+  identity = "~/.config/chezmoi/key.txt"
+  recipient = "age1x0qs4gtfvvv9k3x0qjf93nzq7w8trh0e08l0zcntc2ul5gf04d0qnz3w3n"
+[scriptEnv]
+    BW_USER = "dxas90@gmail.com"
+    SAFE_FOLDER = "$HOME/Vaults/Safe"

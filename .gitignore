@@ -1,0 +1,16 @@
+# Trash
+.DS_Store
+Thumbs.db
+# k8s
+kubeconfig
+*.kubeconfig
+.decrypted~*.yaml
+.config.env
+*.agekey
+*.pub
+*.key
+# Ansible
+.venv*
+.env
+.vscode
+key.txt.age

@@ -81,3 +81,8 @@
     type = "file"
     url = "https://github.com/docker/compose/releases/latest/download/docker-compose-{{ .chezmoi.os }}-x86_64"
     executable = true
+[".local/bin/zoxide"]
+    type = "archive-file"
+    url = "https://github.com/ajeetdsouza/zoxide/releases/download/v{{ .tools.zoxide.version }}/zoxide-{{ .tools.zoxide.version }}-x86_64-unknown-{{ .chezmoi.os }}-musl.tar.gz"
+    executable = true
+    path = "zoxide"
