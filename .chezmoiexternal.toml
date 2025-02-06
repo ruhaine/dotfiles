@@ -1,0 +1,83 @@
+[".local/bin/jq"]
+    type = "file"
+    url = "https://github.com/jqlang/jq/releases/download/jq-{{ .tools.jq.version }}/jq-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
+    executable = true
+[".local/bin/bw"]
+    type = "archive-file"
+    url = "https://github.com/bitwarden/clients/releases/download/cli-v{{ .tools.bw.version }}/bw-{{ .chezmoi.os }}-{{ .tools.bw.version }}.zip"
+    path = "bw"
+    executable = true
+[".local/bin/bws"]
+    type = "archive-file"
+    url = "https://github.com/bitwarden/sdk-sm/releases/download/bws-v{{ .tools.bws.version }}/bws-x86_64-unknown-{{ .chezmoi.os }}-gnu-{{ .tools.bws.version }}.zip"
+    path = "bws"
+    executable = true
+[".local/bin/direnv"]
+    type = "file"
+    url = "https://github.com/direnv/direnv/releases/download/v{{ .tools.direnv.version }}/direnv.{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
+    executable = true
+[".local/bin/kubectl"]
+    type = "file"
+    url = "https://dl.k8s.io/release/v{{ .tools.kubectl.version }}/bin/{{ .chezmoi.os }}/{{ .chezmoi.arch }}/kubectl"
+    executable = true
+[".local/bin/k3d"]
+    type = "file"
+    url = "https://github.com/k3d-io/k3d/releases/download/v{{ .tools.k3d.version }}/k3d-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
+    executable = true
+[".local/bin/autok3s"]
+    type = "file"
+    url = "https://github.com/cnrancher/autok3s/releases/download/v{{ .tools.autok3s.version }}/autok3s_{{ .chezmoi.os }}_{{ .chezmoi.arch }}"
+    executable = true
+[".local/bin/flux"]
+    type = "archive-file"
+    url = "https://github.com/fluxcd/flux2/releases/download/v{{ .tools.flux.version }}/flux_{{ .tools.flux.version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
+    path = "flux"
+    executable = true
+[".local/bin/age"]
+    type = "archive-file"
+    url = "https://github.com/FiloSottile/age/releases/download/v{{ .tools.age.version }}/age-v{{ .tools.age.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
+    path = "age/age"
+    executable = true
+[".local/bin/sops"]
+    type = "file"
+    url = "https://github.com/getsops/sops/releases/download/v{{ .tools.sops.version }}/sops-v{{ .tools.sops.version }}.{{ .chezmoi.os }}.{{ .chezmoi.arch }}"
+    executable = true
+[".local/bin/cloudflared"]
+    type = "file"
+    url = "https://github.com/cloudflare/cloudflared/releases/download/{{ .tools.cloudflared.version }}/cloudflared-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
+    executable = true
+[".local/bin/devspace"]
+    type = "file"
+    url = "https://github.com/loft-sh/devspace/releases/latest/download/devspace-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
+    executable = true
+[".local/bin/vcluster"]
+    type = "file"
+    url = "https://github.com/loft-sh/vcluster/releases/latest/download/vcluster-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
+    executable = true
+[".local/bin/argocd"]
+    type = "file"
+    url = "https://github.com/argoproj/argo-cd/releases/latest/download/argocd-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
+    executable = true
+[".local/bin/task"]
+    type = "archive-file"
+    url = "https://github.com/go-task/task/releases/download/v{{ .tools.go_task.version }}/task_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
+    path = "task"
+    executable = true
+[".local/bin/yq"]
+    type = "file"
+    url = "https://github.com/mikefarah/yq/releases/latest/download/yq_{{ .chezmoi.os }}_{{ .chezmoi.arch }}"
+    executable = true
+[".local/bin/vagrant"]
+    type = "archive-file"
+    url = "https://releases.hashicorp.com/vagrant/{{ .tools.vagrant.version }}/vagrant_{{ .tools.vagrant.version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.zip"
+    path = "vagrant"
+    executable = true
+[".local/bin/rclone"]
+    type = "archive-file"
+    url = "https://downloads.rclone.org/v{{ .tools.rclone.version }}/rclone-v{{ .tools.rclone.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.zip"
+    path = "rclone-v{{ .tools.rclone.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}/rclone"
+    executable = true
+[".local/bin/docker-compose"]
+    type = "file"
+    url = "https://github.com/docker/compose/releases/latest/download/docker-compose-{{ .chezmoi.os }}-x86_64"
+    executable = true
