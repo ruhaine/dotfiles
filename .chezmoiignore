@@ -1,2 +1,5 @@
 sops_age_keys.txt
 key.txt.age
+*.md
+LICENSE
+test/

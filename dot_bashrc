@@ -1,0 +1,28 @@
+eval "$(starship init bash)"
+if [ -f ~/.bash_aliases ]; then
+. ~/.bash_aliases
+fi
+for script in "$HOME/.config/sops-nix/secrets/"*.sh; do [ -f "$script" ] && source "$script"; done
+
+
+# Commands that should be applied only for interactive shells.
+[[ $- == *i* ]] || return
+
+HISTCONTROL=ignoredups:ignorespace
+HISTFILESIZE=100000
+HISTSIZE=10000
+
+shopt -s histappend
+shopt -s checkwinsize
+shopt -s extglob
+shopt -s globstar
+shopt -s checkjobs
+
+alias ...='cd ../..'
+alias cat='bat -p'
+alias g=git
+alias vim=nvim
+
+eval "$(zoxide init bash )"
+eval "$(direnv hook bash)"
+
