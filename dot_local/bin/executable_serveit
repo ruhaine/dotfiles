@@ -1,0 +1,41 @@
+#!/bin/bash
+
+#If environment variable DEBUG is set to "true" bash debug will be set. Set Debug to "verbose" for more verbose debug information
+# adapted from https://gitlab.com/EvanHahn/dotfiles/-/blob/main/home/bin/bin/serveit
+if [ "${MY_DEBUG,,}" == "true" ]; then set -x; elif [ "${MY_DEBUG,,}" == "verbose" ]; then set -xv; fi
+
+set -euo pipefail
+IFS=$'\n\t'
+temp_folder=$(mktemp -d -t tmp.XXXXXXXXXX)
+cd $temp_folder
+
+function finish {
+  rm -rf "$temp_folder"
+}
+
+trap finish EXIT
+
+port='8000'
+if [ $# -eq 1 ]; then
+  port="$1"
+fi
+
+if hash php 2>/dev/null; then
+  exec php -S "localhost:$port"
+elif hash python3 2>/dev/null; then
+  exec python3 -m http.server "$port"
+elif hash python 2>/dev/null; then
+  major_version="$(python -c 'import platform as p;print(p.python_version_tuple()[0])')"
+  if [[ "$major_version" == '3' ]]; then
+    exec python -m http.server "$port"
+  else
+    exec python -m SimpleHTTPServer "$port"
+  fi
+elif hash ruby 2>/dev/null; then
+  exec ruby -run -e httpd . -p "$port"
+else
+  echo 'unable to start HTTP server' 1>&2
+  exit 1
+fi
+
+# vim: set syn=sh ts=4 sw=4 et filetype=sh
