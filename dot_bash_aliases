@@ -9,6 +9,8 @@ alias l='ls -CF'
 alias la='ls -A'
 alias lg='lazygit'
 alias ll='ls -la'
+# alias ll="eza --long --header --icons --git --total-size --git-ignore --tree"
+# alias ls="eza --long --header --icons --git --total-size"
 alias lst='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--/g'"'"' -e '"'"'s/^/   /'"'"' -e '"'"'s/-/|/'"'"
 alias make_pass='pwgen -N 1 -y -n -s 17 5 | awk "{print $1}"'
 alias minicom='/bin/minicom -w -t xterm -l -R UTF-8'
@@ -75,6 +77,11 @@ new_ansible_role() {
   touch roles/$1/defaults/main.yml    #  <-- default lower priority variables for this role
   touch roles/$1/meta/main.yml        #  <-- role dependencies
 }
+
+# env-secrets
+[ -f "$HOME/.env-secrets" ] && source "$HOME/.env-secrets"
+
+for script in "$HOME/.env-secrets.d/"*.sh; do [ -f "$script" ] && source "$script"; done
 
 [ -f ~/.bw_session ] && source ~/.bw_session
 

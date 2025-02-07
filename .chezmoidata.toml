@@ -1,5 +1,3 @@
-[tools.jq]
-    version = "1.7.1"
 [tools.bw]
     version = "2025.1.2"
 [tools.bws]
@@ -8,16 +6,10 @@
     version = "2.32.3"
 [tools.kubectl]
     version = "1.32.1"
-[tools.k3d]
-    version = "5.8.1"
-[tools.autok3s]
-    version = "0.9.3"
 [tools.flux]
     version = "2.4.0"
 [tools.age]
     version = "1.2.1"
-[tools.sops]
-    version = "3.9.4"
 [tools.cloudflared]
     version = "2025.2.0"
 [tools.go_task]
@@ -26,5 +18,9 @@
     version = "2.4.3"
 [tools.rclone]
     version = "1.69.0"
-[tools.zoxide]
-    version = "0.9.6"
+[tools.kopia]
+    version = "0.19.0"
+[tools.helm]
+    version = "3.17.0"
+[tools.linkerd2]
+    version = "25.1.2"

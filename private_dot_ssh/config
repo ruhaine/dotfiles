@@ -15,6 +15,7 @@ Host *
   ConnectTimeout 15                           # Abort connection attempts after 15 seconds
   ConnectionAttempts 3                        # Retry connection 3 times before failing
   HashKnownHosts yes                          # Hash entries in known_hosts for privacy
+#  IdentityAgent "~/.ssh/ssh-agent.socket"    # TODO
   IdentityFile /home/daniel/.ssh/id_ed25519   # ED25519 key (recommended for modern systems)
   IdentityFile /home/daniel/.ssh/id_rsa       # RSA key
   IdentityFile /home/daniel/.ssh/id_ecdsa     # ECDSA key

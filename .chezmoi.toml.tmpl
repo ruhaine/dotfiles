@@ -5,3 +5,13 @@ encryption = "age"
 [scriptEnv]
     BW_USER = "dxas90@gmail.com"
     SAFE_FOLDER = "$HOME/Vaults/Safe"
+[merge]
+  command = "nvim"
+  args = [
+    "-d",
+    "{{ "{{" }} .Destination {{ "}}" }}",
+    "{{ "{{" }} .Source {{ "}}" }}",
+    "{{ "{{" }} .Target {{ "}}" }}",
+  ]
+[hooks.read-source-state.pre]
+  command = ".local/share/chezmoi/.install-password-manager.sh"

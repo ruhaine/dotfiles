@@ -1,88 +1,141 @@
 [".local/bin/jq"]
-    type = "file"
-    url = "https://github.com/jqlang/jq/releases/download/jq-{{ .tools.jq.version }}/jq-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
-    executable = true
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "jqlang/jq" (printf "jq-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
+  executable = true
 [".local/bin/bw"]
-    type = "archive-file"
-    url = "https://github.com/bitwarden/clients/releases/download/cli-v{{ .tools.bw.version }}/bw-{{ .chezmoi.os }}-{{ .tools.bw.version }}.zip"
-    path = "bw"
-    executable = true
+  type = "archive-file"
+  url = "https://github.com/bitwarden/clients/releases/download/cli-v{{ .tools.bw.version }}/bw-{{ .chezmoi.os }}-{{ .tools.bw.version }}.zip"
+  path = "bw"
+  executable = true
 [".local/bin/bws"]
-    type = "archive-file"
-    url = "https://github.com/bitwarden/sdk-sm/releases/download/bws-v{{ .tools.bws.version }}/bws-x86_64-unknown-{{ .chezmoi.os }}-gnu-{{ .tools.bws.version }}.zip"
-    path = "bws"
-    executable = true
+  type = "archive-file"
+  url = "https://github.com/bitwarden/sdk-sm/releases/download/bws-v{{ .tools.bws.version }}/bws-x86_64-unknown-{{ .chezmoi.os }}-gnu-{{ .tools.bws.version }}.zip"
+  path = "bws"
+  executable = true
 [".local/bin/direnv"]
-    type = "file"
-    url = "https://github.com/direnv/direnv/releases/download/v{{ .tools.direnv.version }}/direnv.{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
-    executable = true
+  type = "file"
+  url = "https://github.com/direnv/direnv/releases/download/v{{ .tools.direnv.version }}/direnv.{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
+  executable = true
 [".local/bin/kubectl"]
-    type = "file"
-    url = "https://dl.k8s.io/release/v{{ .tools.kubectl.version }}/bin/{{ .chezmoi.os }}/{{ .chezmoi.arch }}/kubectl"
-    executable = true
+  type = "file"
+  url = "https://dl.k8s.io/release/v{{ .tools.kubectl.version }}/bin/{{ .chezmoi.os }}/{{ .chezmoi.arch }}/kubectl"
+  executable = true
 [".local/bin/k3d"]
-    type = "file"
-    url = "https://github.com/k3d-io/k3d/releases/download/v{{ .tools.k3d.version }}/k3d-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
-    executable = true
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "k3d-io/k3d" (printf "k3d-%s-%s*" .chezmoi.os .chezmoi.arch) }}'
+  executable = true
 [".local/bin/autok3s"]
-    type = "file"
-    url = "https://github.com/cnrancher/autok3s/releases/download/v{{ .tools.autok3s.version }}/autok3s_{{ .chezmoi.os }}_{{ .chezmoi.arch }}"
-    executable = true
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "cnrancher/autok3s" (printf "autok3s_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
+  executable = true
 [".local/bin/flux"]
-    type = "archive-file"
-    url = "https://github.com/fluxcd/flux2/releases/download/v{{ .tools.flux.version }}/flux_{{ .tools.flux.version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
-    path = "flux"
-    executable = true
+  type = "archive-file"
+  url = "https://github.com/fluxcd/flux2/releases/download/v{{ .tools.flux.version }}/flux_{{ .tools.flux.version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
+  path = "flux"
+  executable = true
 [".local/bin/age"]
-    type = "archive-file"
-    url = "https://github.com/FiloSottile/age/releases/download/v{{ .tools.age.version }}/age-v{{ .tools.age.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
-    path = "age/age"
-    executable = true
+  type = "archive-file"
+  url = "https://github.com/FiloSottile/age/releases/download/v{{ .tools.age.version }}/age-v{{ .tools.age.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
+  path = "age/age"
+  executable = true
 [".local/bin/sops"]
-    type = "file"
-    url = "https://github.com/getsops/sops/releases/download/v{{ .tools.sops.version }}/sops-v{{ .tools.sops.version }}.{{ .chezmoi.os }}.{{ .chezmoi.arch }}"
-    executable = true
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "getsops/sops" (printf "sops-*.%s.%s*" .chezmoi.os .chezmoi.arch ) }}'
+  executable = true
 [".local/bin/cloudflared"]
-    type = "file"
-    url = "https://github.com/cloudflare/cloudflared/releases/download/{{ .tools.cloudflared.version }}/cloudflared-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
-    executable = true
+  type = "file"
+  url = "https://github.com/cloudflare/cloudflared/releases/download/{{ .tools.cloudflared.version }}/cloudflared-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
+  executable = true
 [".local/bin/devspace"]
-    type = "file"
-    url = "https://github.com/loft-sh/devspace/releases/latest/download/devspace-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
-    executable = true
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "loft-sh/devspace" (printf "devspace-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
+  executable = true
 [".local/bin/vcluster"]
-    type = "file"
-    url = "https://github.com/loft-sh/vcluster/releases/latest/download/vcluster-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
-    executable = true
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "loft-sh/vcluster" (printf "vcluster-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
+  executable = true
 [".local/bin/argocd"]
-    type = "file"
-    url = "https://github.com/argoproj/argo-cd/releases/latest/download/argocd-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
-    executable = true
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "argoproj/argo-cd" (printf "argocd-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
+  executable = true
 [".local/bin/task"]
-    type = "archive-file"
-    url = "https://github.com/go-task/task/releases/download/v{{ .tools.go_task.version }}/task_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
-    path = "task"
-    executable = true
+  type = "archive-file"
+  url = "https://github.com/go-task/task/releases/download/v{{ .tools.go_task.version }}/task_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
+  path = "task"
+  executable = true
 [".local/bin/yq"]
-    type = "file"
-    url = "https://github.com/mikefarah/yq/releases/latest/download/yq_{{ .chezmoi.os }}_{{ .chezmoi.arch }}"
-    executable = true
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "mikefarah/yq" (printf "yq_%s_%s*" .chezmoi.os .chezmoi.arch ) }}'
+  executable = true
 [".local/bin/vagrant"]
-    type = "archive-file"
-    url = "https://releases.hashicorp.com/vagrant/{{ .tools.vagrant.version }}/vagrant_{{ .tools.vagrant.version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.zip"
-    path = "vagrant"
-    executable = true
+  type = "archive-file"
+  url = "https://releases.hashicorp.com/vagrant/{{ .tools.vagrant.version }}/vagrant_{{ .tools.vagrant.version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.zip"
+  path = "vagrant"
+  executable = true
 [".local/bin/rclone"]
-    type = "archive-file"
-    url = "https://downloads.rclone.org/v{{ .tools.rclone.version }}/rclone-v{{ .tools.rclone.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.zip"
-    path = "rclone-v{{ .tools.rclone.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}/rclone"
-    executable = true
+  type = "archive-file"
+  url = "https://downloads.rclone.org/v{{ .tools.rclone.version }}/rclone-v{{ .tools.rclone.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.zip"
+  path = "rclone-v{{ .tools.rclone.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}/rclone"
+  executable = true
 [".local/bin/docker-compose"]
-    type = "file"
-    url = "https://github.com/docker/compose/releases/latest/download/docker-compose-{{ .chezmoi.os }}-x86_64"
-    executable = true
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "docker/compose" (printf "docker-compose-%s-x86_64*" .chezmoi.os ) }}'
+  executable = true
 [".local/bin/zoxide"]
-    type = "archive-file"
-    url = "https://github.com/ajeetdsouza/zoxide/releases/download/v{{ .tools.zoxide.version }}/zoxide-{{ .tools.zoxide.version }}-x86_64-unknown-{{ .chezmoi.os }}-musl.tar.gz"
-    executable = true
-    path = "zoxide"
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "ajeetdsouza/zoxide" (printf "*x86_64-unknown-%s-musl*" .chezmoi.os) }}'
+  executable = true
+  path = "zoxide"
+[".local/bin/kopia"]
+  type = "archive-file"
+  url = "https://github.com/kopia/kopia/releases/download/v{{ .tools.kopia.version }}/kopia-{{ .tools.kopia.version }}-{{ .chezmoi.os }}-x64.tar.gz"
+  executable = true
+  path = "kopia-{{ .tools.kopia.version }}-{{ .chezmoi.os }}-x64/kopia"
+[".local/bin/helm"]
+  type = "archive-file"
+  url = "https://get.helm.sh/helm-v{{ .tools.helm.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
+  executable = true
+  path = "{{ .chezmoi.os }}-{{ .chezmoi.arch }}/helm"
+[".local/bin/lazygit"]
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "*Linux_x86_64*" ) }}'
+  executable = true
+  path = "lazygit"
+[".local/bin/linkerd2"]
+  type = "file"
+  url = "https://github.com/linkerd/linkerd2/releases/download/edge-{{ .tools.linkerd2.version }}/linkerd2-cli-edge-{{ .tools.linkerd2.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
+  executable = true
+[".local/bin/bat"]
+  type = "archive-file"
+  {{ $batVersion := (gitHubLatestRelease "sharkdp/bat").TagName }}
+  url = '{{ gitHubLatestReleaseAssetURL "sharkdp/bat" (printf "*x86_64-unknown-%s-gnu*" .chezmoi.os ) }}'
+  path = "bat-{{ $batVersion }}-x86_64-unknown-{{ .chezmoi.os }}-gnu/bat"
+  executable = true
+[".local/bin/fzf"]
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "junegunn/fzf" (printf "*%s_%s*" .chezmoi.os .chezmoi.arch) }}'
+  path = "fzf"
+[".local/bin/fd"]
+  type = "archive-file"
+  {{ $fdVersion := (gitHubLatestRelease "sharkdp/fd").TagName }}
+  url = '{{ gitHubLatestReleaseAssetURL "sharkdp/fd" (printf "fd-*-x86_64-unknown-%s-gnu*" .chezmoi.os) }}'
+  path = "fd-{{ $fdVersion }}-x86_64-unknown-linux-gnu/fd"
+[".local/bin/git-credential-keepassxc"]
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "Frederick888/git-credential-keepassxc" (printf "*ubuntu*full*") }}'
+  path = "git-credential-keepassxc"
+[".local/bin/rg"]
+  type = "archive-file"
+  {{ $rgVersion := (gitHubLatestRelease "BurntSushi/ripgrep").TagName }}
+  url = '{{ gitHubLatestReleaseAssetURL "BurntSushi/ripgrep" (printf "*x86_64-unknown-%s-musl*" .chezmoi.os ) }}'
+  path = "ripgrep-{{ $rgVersion }}-x86_64-unknown-linux-musl/rg"
+[".local/bin/speedtest"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py"
+  executable = true
+# [".local/bin/eza"]
+#   type = "archive-file"
+#   {{ $ezaVersion := (gitHubLatestRelease "eza-community/eza").TagName }}
+#   url = 'https://github.com/eza-community/eza/releases/download/{{ $ezaVersion }}/eza_x86_64-unknown-{{ .chezmoi.os }}-gnu  ls -las'
+#   path = "eza"
+#   executable = true

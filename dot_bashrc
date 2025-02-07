@@ -4,7 +4,6 @@ if [ -f ~/.bash_aliases ]; then
 fi
 for script in "$HOME/.config/sops-nix/secrets/"*.sh; do [ -f "$script" ] && source "$script"; done
 
-
 # Commands that should be applied only for interactive shells.
 [[ $- == *i* ]] || return
 
@@ -23,6 +22,5 @@ alias cat='bat -p'
 alias g=git
 alias vim=nvim
 
-eval "$(zoxide init bash )"
+eval "$(zoxide init bash)"
 eval "$(direnv hook bash)"
-
