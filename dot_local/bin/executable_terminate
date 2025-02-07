@@ -1,0 +1,137 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import os
+import signal
+import sys
+import time
+import subprocess
+
+SIGNALS = [
+    [15, 3],
+    [2, 3],
+    [1, 4],
+    [9, 0]
+]
+
+def is_integer(arg):
+    """Check if a string can be converted to an integer."""
+    try:
+        int(arg)
+        return True
+    except ValueError:
+        return False
+
+def is_process_running(pid):
+    """Check if a process is running by pid."""
+    try:
+        subprocess.check_output(["ps", "-p", str(pid)], stderr=subprocess.DEVNULL)
+        return True
+    except subprocess.CalledProcessError:
+        return False
+
+def get_user_confirmation(prompt="Proceed? (y/n): "):
+    """Ask for user input to confirm action."""
+    while True:
+        response = input(prompt).strip().lower()
+        if response in ['y', 'yes', 'yas']:
+            return True
+        elif response in ['n', 'no']:
+            return False
+        print("Please respond with 'y' or 'n'.")
+
+def send_signal(pid, code):
+    """Send signal to a process."""
+    try:
+        os.kill(pid, code)
+    except ProcessLookupError:
+        print(f"Process {pid} not found.")
+    except PermissionError:
+        print(f"No permission to kill process {pid}.")
+
+def terminate_pid(pid):
+    """Terminate a process by pid using a series of signals."""
+    for signal_code, wait in SIGNALS:
+        if not is_process_running(pid):
+            break
+        send_signal(pid, signal_code)
+        time.sleep(0.5)
+        if is_process_running(pid):
+            time.sleep(wait)
+
+def terminate_process_by_name(name):
+    """Terminate processes matching a name."""
+    while True:
+        should_retry = False
+        try:
+            running_processes = subprocess.check_output(["ps", "-eo", "pid,command"], text=True)
+        except subprocess.CalledProcessError:
+            print("Error retrieving running processes.")
+            break
+
+        for line in running_processes.splitlines():
+            if name.lower() in line.lower() and 'grep' not in line:
+                pid, fullname = line.split(None, 1)
+                pid = int(pid)
+                if pid == os.getpid():  # Skip the current process
+                    continue
+
+                print(f"Terminate {fullname.strip()} (pid {pid})?")
+                if get_user_confirmation():
+                    terminate_pid(pid)
+                    should_retry = True
+                    break
+
+        if not should_retry:
+            break
+
+def terminate_process_by_port(port):
+    """Terminate processes listening on a specific port."""
+    while True:
+        should_retry = False
+        try:
+            lsofs = subprocess.check_output(["lsof", "-i", port], text=True)
+        except subprocess.CalledProcessError:
+            print(f"Error finding processes on port {port}.")
+            break
+
+        for line in lsofs.splitlines()[1:]:
+            pid = line.split(None, 3)[1]
+            try:
+                fullname = subprocess.check_output(["ps", "-eo", "command", str(pid)], text=True).splitlines()[1]
+            except subprocess.CalledProcessError:
+                print(f"Error retrieving command for pid {pid}.")
+                continue
+
+            print(f"Terminate {fullname.strip()} (pid {pid})?")
+            if get_user_confirmation():
+                terminate_pid(int(pid))
+                should_retry = True
+                break
+
+        if not should_retry:
+            break
+
+def terminate(arg):
+    """Main function to handle termination by pid, name, or port."""
+    if is_integer(arg):
+        terminate_pid(int(arg))
+    elif arg.startswith(':') and is_integer(arg[1:]):
+        terminate_process_by_port(arg)
+    else:
+        terminate_process_by_name(arg)
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage:")
+        print("terminate 123    # kill by pid")
+        print("terminate ruby   # kill by process name")
+        print("terminate :3000  # kill by port")
+        sys.exit(1)
+
+    for arg in sys.argv[1:]:
+        terminate(arg)
+
+if __name__ == "__main__":
+    main()
+
+# ex: ts=4 sw=4 et filetype=python
