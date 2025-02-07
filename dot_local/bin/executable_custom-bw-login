@@ -15,10 +15,45 @@ function finish {
 trap finish EXIT
 
 # Define the default safe folder location
-SAFE_FOLDER=${SAFE_FOLDER:-$HOME/Vaults/Safe}
+SAFE_FOLDER=${SAFE_FOLDER:-"$HOME/Vaults/Safe"}
+USER_BIN_DIR="${HOME:-"~"}/.local/bin"
+
+function install_password_manager() {
+  mkdir -p "${USER_BIN_DIR}"
+
+  if ! type bw >/dev/null 2>&1; then
+    echo "Installing Bitwarden CLI..."
+    curl -sL "https://github.com/bitwarden/clients/releases/download/cli-v2025.1.2/bw-linux-2025.1.2.zip" | funzip > bw
+    install -m 0755 bw "${USER_BIN_DIR}/bw"
+  else
+    echo "Bitwarden CLI is already installed. Skipping installation."
+  fi
+}
+
+function install_oathtool() {
+  mkdir -p ${USER_BIN_DIR}
+  if ! type oathtool >/dev/null 2>&1; then
+    echo "Installing oathtool..."
+    curl -o oathtool -sL "https://raw.githubusercontent.com/dxas90/dotfiles/refs/heads/main/dot_local/bin/executable_oathtool"
+    install -m 0755 oathtool "${USER_BIN_DIR}/oathtool"
+  else
+    echo "oathtool is already installed. Skipping installation."
+  fi
+}
+
+_oathtool() {
+   python3 <(curl -sL "https://raw.githubusercontent.com/dxas90/dotfiles/refs/heads/main/dot_local/bin/executable_oathtool") $@
+}
+
+if [[ ! -d "$SAFE_FOLDER" ]]; then
+    echo "Error: Safe directory '$SAFE_FOLDER' not found!"
+    exit 1
+fi
 
 # Function to log into Bitwarden and handle session management
 bw_login() {
+    install_password_manager
+    install_oathtool
     local bitwarden=${1:-"remote"}  # Default to "remote" if no argument is given
 
     # Logout from any existing session (ignores errors if already logged out)
@@ -26,7 +61,11 @@ bw_login() {
 
     # Define password file and OTP code
     PASSWORD_FILE=${PASSWORD_FILE:-".bw.${bitwarden}"}
-    OTP_CODE=${OTP_CODE:-"$(cat "$SAFE_FOLDER/$PASSWORD_FILE.otp" | oathtool)"}
+    if [[ ! -f "$SAFE_FOLDER/$PASSWORD_FILE" ]]; then
+        echo "Error: Password dile '$PASSWORD_FILE' not found inside $SAFE_FOLDER !"
+        exit 1
+    fi
+    OTP_CODE=${OTP_CODE:-"$(cat "$SAFE_FOLDER/$PASSWORD_FILE.otp" | _oathtool)"}
 
     # Configure Bitwarden server based on local or remote usage
     if [ "$bitwarden" == "local" ]; then
