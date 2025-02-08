@@ -12,6 +12,11 @@
   url = "https://github.com/bitwarden/sdk-sm/releases/download/bws-v{{ .tools.bws.version }}/bws-x86_64-unknown-{{ .chezmoi.os }}-gnu-{{ .tools.bws.version }}.zip"
   path = "bws"
   executable = true
+[".local/bin/terraform"]
+  type = "archive-file"
+  url = "https://releases.hashicorp.com/terraform/{{ .tools.terraform.version }}/terraform_{{ .tools.terraform.version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.zip"
+  path = "terraform"
+  executable = true
 [".local/bin/direnv"]
   type = "file"
   url = "https://github.com/direnv/direnv/releases/download/v{{ .tools.direnv.version }}/direnv.{{ .chezmoi.os }}-{{ .chezmoi.arch }}"

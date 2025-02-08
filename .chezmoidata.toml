@@ -24,3 +24,5 @@
     version = "3.17.0"
 [tools.linkerd2]
     version = "25.1.2"
+[tools.terraform]
+    version = "1.10.5"
