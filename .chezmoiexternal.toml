@@ -138,6 +138,10 @@
   type = "file"
   url = "https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py"
   executable = true
+[".local/bin/hugo"]
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "gohugoio/hugo" (printf "hugo_extended_withdeploy_*%s_%s*" .chezmoi.os .chezmoi.arch) }}'
+  path = "hugo"
 # [".local/bin/eza"]
 #   type = "archive-file"
 #   {{ $ezaVersion := (gitHubLatestRelease "eza-community/eza").TagName }}
