@@ -1,10 +1,18 @@
+{{- $secrets := true -}}
+{{- if (env "SECRETS_OFF") -}}
+{{- $secrets = false -}}
+{{- end -}}
+
 encryption = "age"
 [age]
   identity = "~/.config/chezmoi/key.txt"
   recipient = "age1x0qs4gtfvvv9k3x0qjf93nzq7w8trh0e08l0zcntc2ul5gf04d0qnz3w3n"
 [scriptEnv]
+{{- if $secrets }}
     BW_USER = "dxas90@gmail.com"
     SAFE_FOLDER = "$HOME/Vaults/Safe"
+{{- end }}
+    NIXPKGS_ALLOW_UNFREE = "1"
 [merge]
   command = "nvim"
   args = [
@@ -15,3 +23,6 @@ encryption = "age"
   ]
 [hooks.read-source-state.pre]
   command = ".local/share/chezmoi/.install-password-manager.sh"
+
+[data]
+  secrets = {{ $secrets }}

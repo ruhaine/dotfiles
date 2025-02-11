@@ -142,6 +142,11 @@
   type = "archive-file"
   url = '{{ gitHubLatestReleaseAssetURL "gohugoio/hugo" (printf "hugo_extended_withdeploy_*%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) }}'
   path = "hugo"
+[".local/bin"]
+  type = "archive"
+  url = '{{ gitHubLatestReleaseAssetURL "nushell/nushell" (printf "nu-*-x86_64-unknown-%s-gnu*" .chezmoi.os) }}'
+  exact = false
+  stripComponents = 1
 # [".local/bin/eza"]
 #   type = "archive-file"
 #   {{ $ezaVersion := (gitHubLatestRelease "eza-community/eza").TagName }}
