@@ -1,11 +1,16 @@
-eval "$(starship init bash)"
-if [ -f ~/.bash_aliases ]; then
-. ~/.bash_aliases
-fi
-for script in "$HOME/.config/sops-nix/secrets/"*.sh; do [ -f "$script" ] && source "$script"; done
+# env-secrets
+[ -f "$HOME/.env-secrets" ] && source "$HOME/.env-secrets"
 
-# Commands that should be applied only for interactive shells.
-[[ $- == *i* ]] || return
+for script in "$HOME/.env-secrets.d/"*.sh; do [ -f "$script" ] && source "$script"; done
+
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
+[ -f ~/.bw_session ] && source ~/.bw_session
+[ -f $HOME/.cargo/env ] && source $HOME/.cargo/env
+[ -f ~/Vaults/work/.key_values ] && source ~/Vaults/work/.key_values
+
+type starship >/dev/null 2>&1 && eval "$(starship init bash)"
+type direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
+type zoxide >/dev/null 2>&1 && eval "$(zoxide init bash)"
 
 HISTCONTROL=ignoredups:ignorespace
 HISTFILESIZE=100000
@@ -18,9 +23,10 @@ shopt -s globstar
 shopt -s checkjobs
 
 alias ...='cd ../..'
-alias cat='bat -p'
+type bat >/dev/null 2>&1 && alias cat='bat -p'
 alias g=git
-alias vim=nvim
+type nvim >/dev/null 2>&1 && alias vim=nvim
+type nvim >/dev/null 2>&1 && export MANPAGER='nvim +Man!' || export MANPAGER='less -s -M +Gg'
 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -30,5 +36,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-eval "$(zoxide init bash)"
-eval "$(direnv hook bash)"
+# ex: ts=4 sw=4 et filetype=sh

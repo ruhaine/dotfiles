@@ -5,7 +5,10 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.font = wezterm.font("CaskaydiaCove Nerd Font Mono")
+-- Spawn a fish shell in login mode
+config.default_prog = { '/bin/bash' }
+
+config.font = wezterm.font("Hack Nerd Font")
 
 config.font_size = 16
 

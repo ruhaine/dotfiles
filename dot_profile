@@ -6,9 +6,8 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-export PATH="$PATH${PATH:+:}$HOME/.local/bin:$HOME/.linkerd2/bin:$HOME/.local/go/bin:$HOME/.cargo/bin"
+export PATH="$PATH${PATH:+:}$HOME/.local/bin:$HOME/.linkerd2/bin:$HOME/.local/go/bin"
 export GOROOT=$HOME/.local/go
-source "$HOME/.cargo/env"
 
 export XDG_RUNTIME_DIR=/run/user/$UID
 export XDG_CONFIG_HOME=${HOME}/.config
