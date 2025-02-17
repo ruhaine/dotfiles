@@ -7,12 +7,16 @@ alias fix-ssh='killall ssh-agent; SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.sock
 alias fixgpu='rm -rf /home/daniel/.config/google-chrome/GrShaderCache/* /home/daniel/.config/google-chrome/ShaderCache/* /home/daniel/.steam/steam/config/htmlcache/* /home/daniel/.steam/steam/steamapps/shadercache/* /home/daniel/.steam/steam/appcache/httpcache/* rm -rf /home/daniel/.steam/steam/steamapps/shadercache/* /home/daniel/.steam/steam/cached/* /home/daniel/.steam/steam/depotcache/* /home/daniel/.steam/steam/appcache/httpcache/*'
 alias gpass='< /dev/urandom tr -dc A-Za-z0-9\$\^\!\@\.\- | head -c25; echo'
 alias k=kubectl
-alias l='ls -CF'
-alias la='ls -A'
 alias lg='lazygit'
-alias ll='ls -la'
-# alias ll="eza --long --header --icons --git --total-size --git-ignore --tree"
-# alias ls="eza --long --header --icons --git --total-size"
+if type eza >/dev/null 2>&1; then
+  alias ls="eza --long --header --icons --git"
+  alias ll="ls --git-ignore"
+  alias l='ls -F'
+else
+  alias l='ls -CF'
+  alias ll='ls -la'
+fi
+alias la='ls -A'
 alias lst='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--/g'"'"' -e '"'"'s/^/   /'"'"' -e '"'"'s/-/|/'"'"
 alias make_pass='pwgen -N 1 -y -n -s 17 5 | awk "{print $1}"'
 alias minicom='/bin/minicom -w -t xterm -l -R UTF-8'
@@ -93,5 +97,6 @@ new_ansible_role() {
 }
 
 complete -F __start_kubectl k
+complete -o default -o nospace -F __start_chezmoi cm
 
 # ex: ts=4 sw=4 et filetype=sh

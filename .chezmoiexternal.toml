@@ -101,11 +101,19 @@
   url = "https://get.helm.sh/helm-v{{ .tools.helm.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
   executable = true
   path = "{{ .chezmoi.os }}-{{ .chezmoi.arch }}/helm"
+{{ if eq .chezmoi.os "darwin" -}}
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "*Darwin_x86_64*" ) }}'
+  executable = true
+  path = "lazygit"
+{{ else if eq .chezmoi.os "linux" -}}
 [".local/bin/lazygit"]
   type = "archive-file"
   url = '{{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "*Linux_x86_64*" ) }}'
   executable = true
   path = "lazygit"
+{{ end -}}
+
 [".local/bin/linkerd2"]
   type = "file"
   url = "https://github.com/linkerd/linkerd2/releases/download/edge-{{ .tools.linkerd2.version }}/linkerd2-cli-edge-{{ .tools.linkerd2.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
@@ -124,7 +132,7 @@
   type = "archive-file"
   {{ $fdVersion := (gitHubLatestRelease "sharkdp/fd").TagName }}
   url = '{{ gitHubLatestReleaseAssetURL "sharkdp/fd" (printf "fd-*-x86_64-unknown-%s-gnu*" .chezmoi.os) }}'
-  path = "fd-{{ $fdVersion }}-x86_64-unknown-linux-gnu/fd"
+  path = "fd-{{ $fdVersion }}-x86_64-unknown-{{ .chezmoi.os }}-gnu/fd"
 [".local/bin/git-credential-keepassxc"]
   type = "archive-file"
   url = '{{ gitHubLatestReleaseAssetURL "Frederick888/git-credential-keepassxc" (printf "*ubuntu*full*") }}'
@@ -133,7 +141,7 @@
   type = "archive-file"
   {{ $rgVersion := (gitHubLatestRelease "BurntSushi/ripgrep").TagName }}
   url = '{{ gitHubLatestReleaseAssetURL "BurntSushi/ripgrep" (printf "*x86_64-unknown-%s-musl*" .chezmoi.os ) }}'
-  path = "ripgrep-{{ $rgVersion }}-x86_64-unknown-linux-musl/rg"
+  path = "ripgrep-{{ $rgVersion }}-x86_64-unknown-{{ .chezmoi.os }}-musl/rg"
 [".local/bin/speedtest"]
   type = "file"
   url = "https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py"
@@ -147,9 +155,10 @@
   url = '{{ gitHubLatestReleaseAssetURL "nushell/nushell" (printf "nu-*-x86_64-unknown-%s-gnu*" .chezmoi.os) }}'
   exact = false
   stripComponents = 1
-# [".local/bin/eza"]
-#   type = "archive-file"
-#   {{ $ezaVersion := (gitHubLatestRelease "eza-community/eza").TagName }}
-#   url = 'https://github.com/eza-community/eza/releases/download/{{ $ezaVersion }}/eza_x86_64-unknown-{{ .chezmoi.os }}-gnu  ls -las'
-#   path = "eza"
-#   executable = true
+[".local/bin/eza"]
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "eza-community/eza" (printf "eza_x86_64-unknown-%s-gnu.zip" .chezmoi.os) }}'
+  path = "eza"
+  executable = true
+
+# ex: ts=4 sw=4 et filetype=toml

@@ -11,6 +11,7 @@ for script in "$HOME/.env-secrets.d/"*.sh; do [ -f "$script" ] && source "$scrip
 type starship >/dev/null 2>&1 && eval "$(starship init bash)"
 type direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 type zoxide >/dev/null 2>&1 && eval "$(zoxide init bash)"
+type chezmoi >/dev/null 2>&1 && eval "$(chezmoi completion bash)"
 
 HISTCONTROL=ignoredups:ignorespace
 HISTFILESIZE=100000
