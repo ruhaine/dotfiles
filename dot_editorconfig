@@ -32,4 +32,3 @@ indent_size = 2
 [{package.json,.travis.yml,.gitlab-ci.yaml}]
 indent_style = space
 indent_size = 2
-

@@ -4,5 +4,7 @@
 
 if [ "$SHLVL" = 1 ]; then
     [ -x /usr/bin/clear_console ] && /usr/bin/clear_console -q
+    printf '\33c\e[3J'
 fi
 
+# ex: ts=4 sw=4 et filetype=sh
