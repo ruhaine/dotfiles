@@ -114,9 +114,13 @@
   path = "lazygit"
 {{ end -}}
 
-[".local/bin/linkerd2"]
+[".linkerd2/bin/linkerd"]
   type = "file"
   url = "https://github.com/linkerd/linkerd2/releases/download/edge-{{ .tools.linkerd2.version }}/linkerd2-cli-edge-{{ .tools.linkerd2.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
+  executable = true
+[".linkerd2/bin/linkerd-smi"]
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "linkerd/linkerd-smi" (printf "linkerd-smi-*-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
   executable = true
 [".local/bin/bat"]
   type = "archive-file"

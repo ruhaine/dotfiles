@@ -8,11 +8,13 @@ for script in "$HOME/.env-secrets.d/"*.sh; do [ -f "$script" ] && source "$scrip
 [ -f $HOME/.cargo/env ] && source $HOME/.cargo/env
 [ -f ~/Vaults/work/.key_values ] && source ~/Vaults/work/.key_values
 
-type starship >/dev/null 2>&1 && eval "$(starship init bash)"
-type direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
-type zoxide >/dev/null 2>&1 && eval "$(zoxide init bash)"
-type chezmoi >/dev/null 2>&1 && eval "$(chezmoi completion bash)"
-type pyenv >/dev/null 2>&1 && eval "$(pyenv init - bash)"
+type starship >/dev/null 2>&1 && eval "$(starship init $MY_SHELL)"
+type direnv >/dev/null 2>&1 && eval "$(direnv hook $MY_SHELL)"
+type zoxide >/dev/null 2>&1 && eval "$(zoxide init $MY_SHELL)"
+type chezmoi >/dev/null 2>&1 && eval "$(chezmoi completion $MY_SHELL)"
+type kubectl >/dev/null 2>&1 && eval "$(kubectl completion $MY_SHELL)"
+type task >/dev/null 2>&1 && eval "$(task --completion $MY_SHELL)"
+type pyenv >/dev/null 2>&1 && eval "$(pyenv init - $MY_SHELL)"
 
 HISTCONTROL=ignoredups:ignorespace
 HISTFILESIZE=100000
