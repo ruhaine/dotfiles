@@ -103,6 +103,11 @@ TerminalApplication=yakuake
 TerminalService=org.kde.yakuake.desktop
 XftHintStyle=hintslight
 XftSubPixel=rgb
+fixed=Source Code Pro,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+font=Source Code Pro,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+menuFont=Source Code Pro,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+smallestReadableFont=Source Code Pro,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+toolBarFont=Source Code Pro,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 
 [KDE]
 AnimationDurationFactor=0.35355339059327373
@@ -134,6 +139,7 @@ Dialog Size=600,480
 [WM]
 activeBackground=47,52,63
 activeBlend=47,52,63
+activeFont=Source Code Pro,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 activeForeground=211,218,227
 inactiveBackground=47,52,63
 inactiveBlend=47,52,63
