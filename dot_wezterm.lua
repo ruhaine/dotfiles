@@ -14,10 +14,9 @@ end
 config.term = "xterm-256color"
 config.hide_tab_bar_if_only_one_tab = true
 
--- Spawn a fish shell in login mode
 config.default_prog = { '/bin/bash' }
 
-config.font = wezterm.font("Hack Nerd Font")
+config.font = wezterm.font("Source Code Pro")
 
 config.font_size = 16
 

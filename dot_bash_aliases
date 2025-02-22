@@ -100,7 +100,4 @@ new_ansible_role() {
   touch roles/$1/meta/main.yml        #  <-- role dependencies
 }
 
-complete -F __start_kubectl k
-complete -o default -o nospace -F __start_chezmoi cm
-
 # ex: ts=4 sw=4 et filetype=sh

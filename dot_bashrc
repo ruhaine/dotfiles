@@ -1,24 +1,40 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+# Enable the subsequent settings only in interactive sessions
+case $- in
+  *i*) ;;
+    *) return;;
+esac
+
+# # # prompt reset
+# unset PROMPT_COMMAND
+# # # Below is a bad example of PS1:
+# # #PS1="\e[1;3;37m\s\e[m\e[1;37m:\e[m\e[1;33m\w\e[m \e[1;32m\u\e[m\e[1;37m\$\e[m "
+# # # Better enclose non-printable sequences in \[ and \]. \e is the same as \033.
+PS1="\
+\[\033[01;32m\]\u\[\033[00m\]\
+\[\033[01;37m\]@\[\033[00m\]\
+\[\033[01;03;37m\]\h\[\033[00m\]\
+\[\033[01;37m\]:\[\033[00m\]\
+\[\033[01;33m\]\w\[\033[00m\] \
+\[\033[01;37m\]\$\[\033[00m\] "
+
 # env-secrets
 [ -f "$HOME/.env-secrets" ] && source "$HOME/.env-secrets"
 
 for script in "$HOME/.env-secrets.d/"*.sh; do [ -f "$script" ] && source "$script"; done
 
-[ -f ~/.bash_aliases ] && source ~/.bash_aliases
 [ -f ~/.bw_session ] && source ~/.bw_session
 [ -f $HOME/.cargo/env ] && source $HOME/.cargo/env
 [ -f ~/Vaults/work/.key_values ] && source ~/Vaults/work/.key_values
 
-type starship >/dev/null 2>&1 && eval "$(starship init $MY_SHELL)"
-type direnv >/dev/null 2>&1 && eval "$(direnv hook $MY_SHELL)"
-type zoxide >/dev/null 2>&1 && eval "$(zoxide init $MY_SHELL)"
-type chezmoi >/dev/null 2>&1 && eval "$(chezmoi completion $MY_SHELL)"
-type kubectl >/dev/null 2>&1 && eval "$(kubectl completion $MY_SHELL)"
-type task >/dev/null 2>&1 && eval "$(task --completion $MY_SHELL)"
-type pyenv >/dev/null 2>&1 && eval "$(pyenv init - $MY_SHELL)"
+type direnv >/dev/null 2>&1 && source <(direnv hook $MY_SHELL)
 
 HISTCONTROL=ignoredups:ignorespace
 HISTFILESIZE=100000
 HISTSIZE=10000
+export HISTIGNORE="ls:ps:history:htop:df:lens"
 
 shopt -s histappend
 shopt -s checkwinsize
@@ -39,5 +55,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
+[ -f ~/.bash_completion ] && source ~/.bash_completion
+
+type starship >/dev/null 2>&1 && source <(starship init $MY_SHELL)
 
 # ex: ts=4 sw=4 et filetype=sh
