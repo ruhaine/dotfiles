@@ -103,11 +103,6 @@ TerminalApplication=yakuake
 TerminalService=org.kde.yakuake.desktop
 XftHintStyle=hintslight
 XftSubPixel=rgb
-fixed=Hack Nerd Font,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-font=Noto Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-menuFont=Noto Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-smallestReadableFont=Noto Sans,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-toolBarFont=Noto Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 
 [KDE]
 AnimationDurationFactor=0.35355339059327373
@@ -139,7 +134,6 @@ Dialog Size=600,480
 [WM]
 activeBackground=47,52,63
 activeBlend=47,52,63
-activeFont=Noto Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 activeForeground=211,218,227
 inactiveBackground=47,52,63
 inactiveBlend=47,52,63

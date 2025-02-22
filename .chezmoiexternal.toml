@@ -164,5 +164,8 @@
   url = '{{ gitHubLatestReleaseAssetURL "eza-community/eza" (printf "eza_x86_64-unknown-%s-gnu.zip" .chezmoi.os) }}'
   path = "eza"
   executable = true
+[".tmux.conf"]
+  type = "file"
+  url = 'https://raw.githubusercontent.com/gpakosz/.tmux/refs/heads/master/.tmux.conf'
 
 # ex: ts=4 sw=4 et filetype=toml
