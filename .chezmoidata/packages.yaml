@@ -6,7 +6,8 @@ packages:
     - 'google-chrome'
   arch:
     yay:
-    - 'pinentry'
     - 'git'
+    - 'keepassxc'
     - 'kubeconform'
     - 'moreutils'
+    - 'pinentry'

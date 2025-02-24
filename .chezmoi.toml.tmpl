@@ -7,6 +7,9 @@ encryption = "age"
 [age]
   identity = "~/.config/chezmoi/key.txt"
   recipient = "age1x0qs4gtfvvv9k3x0qjf93nzq7w8trh0e08l0zcntc2ul5gf04d0qnz3w3n"
+[keepassxc]
+    database = "~/Sync/chezmoi.kdbx"
+    mode = "open"
 [scriptEnv]
 {{- if $secrets }}
     BW_USER = "dxas90@gmail.com"

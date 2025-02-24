@@ -6,6 +6,7 @@ alias fix-ssh='killall ssh-agent; SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.sock
 # alias ssh-agent='SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"; ssh-agent -a $SSH_AUTH_SOCK'
 alias fixgpu='rm -rf /home/daniel/.config/google-chrome/GrShaderCache/* /home/daniel/.config/google-chrome/ShaderCache/* /home/daniel/.steam/steam/config/htmlcache/* /home/daniel/.steam/steam/steamapps/shadercache/* /home/daniel/.steam/steam/appcache/httpcache/* rm -rf /home/daniel/.steam/steam/steamapps/shadercache/* /home/daniel/.steam/steam/cached/* /home/daniel/.steam/steam/depotcache/* /home/daniel/.steam/steam/appcache/httpcache/*'
 alias gpass='< /dev/urandom tr -dc A-Za-z0-9\$\^\!\@\.\- | head -c25; echo'
+# alias keepassxc-cli='flatpak run --command=keepassxc-cli org.keepassxc.KeePassXC "$@"'
 alias k=kubectl
 alias lg='lazygit'
 if type eza >/dev/null 2>&1; then
