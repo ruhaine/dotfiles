@@ -30,6 +30,15 @@ function install_password_manager() {
   fi
 }
 
+function install_password_manager_alternative() {
+  type rbw >/dev/null 2>&1 && exit
+  mkdir -p ${USER_BIN_DIR}
+  curl -sLo rbw.tar.gz "https://github.com/doy/rbw/releases/download/1.13.2/rbw_1.13.2_linux_amd64.tar.gz" | funzip > bw
+  tar xzf rbw.tar.gz
+  install -m 0755 rbw ${USER_BIN_DIR}/rbw
+  install -m 0755 rbw-agent ${USER_BIN_DIR}/rbw-agent
+}
+
 function install_oathtool() {
   mkdir -p ${USER_BIN_DIR}
   if ! type oathtool >/dev/null 2>&1; then
@@ -45,13 +54,12 @@ _oathtool() {
    python3 <(curl -sL "https://raw.githubusercontent.com/dxas90/dotfiles/refs/heads/main/dot_local/bin/executable_oathtool") $@
 }
 
-if [[ ! -d "$SAFE_FOLDER" ]]; then
-    echo "Error: Safe directory '$SAFE_FOLDER' not found!"
-    exit 1
-fi
-
 # Function to log into Bitwarden and handle session management
 bw_login() {
+    if [[ ! -d "$SAFE_FOLDER" ]]; then
+        echo "Error: Safe directory '$SAFE_FOLDER' not found!"
+        exit 1
+    fi
     install_password_manager
     install_oathtool
     local bitwarden=${1:-"remote"}  # Default to "remote" if no argument is given
@@ -91,6 +99,25 @@ bw_login() {
     fi
 }
 
+rbw_login() {
+    install_password_manager_alternative
+    local bitwarden=${1:-"remote"}  # Default to "remote" if no argument is given
+
+    # Logout from any existing session (ignores errors if already logged out)
+    rbw logout >/dev/null 2>&1 || true
+
+    # Configure Bitwarden server based on local or remote usage
+    if [ "$bitwarden" == "local" ]; then
+      rbw config set base_url "https://vaultwarden.xome.duckdns.org"
+    else
+      rbw config set base_url "https://vault.bitwarden.com"
+    fi
+    rbw config set email ${BW_USER:-dxas90@gmail.com}
+    rbw login
+    rbw unlock
+    rbw sync
+}
+
 # Handle command-line arguments for local or remote login
 case "${1:-''}" in
     local)
@@ -98,6 +125,12 @@ case "${1:-''}" in
         ;;
     remote)
         bw_login
+        ;;
+    alt)
+        rbw_login "local"
+        ;;
+    alt-remote)
+        rbw_login
         ;;
     *)
         echo "Usage: $(basename "$0") local|remote"

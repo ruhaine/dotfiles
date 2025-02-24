@@ -1,0 +1,22 @@
+#!/bin/env bash
+{{ if eq .chezmoi.os "darwin" -}}
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range .packages.darwin.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.darwin.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+EOF
+{{ end -}}
+{{ if eq .chezmoi.os "linux" -}}
+  {{ if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+  # WSL-specific code
+  {{   end -}}
+  {{ if (.chezmoi.kernel.osrelease | lower | contains "manjaro") -}}
+  # Manjaro Linux-specific code
+yay -Syu --needed --noconfirm --noprogressbar {{ .packages.arch.yay | join " " }}
+  {{   end -}}
+  {{ if (.chezmoi.kernel.osrelease | lower | contains "ubuntu") -}}
+  {{   end -}}
+{{ end -}}

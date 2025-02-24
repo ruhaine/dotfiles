@@ -4,3 +4,9 @@ packages:
     - 'git'
     casks:
     - 'google-chrome'
+  arch:
+    yay:
+    - 'pinentry'
+    - 'git'
+    - 'kubeconform'
+    - 'moreutils'

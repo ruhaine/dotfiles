@@ -172,4 +172,14 @@
   url = '{{ gitHubLatestReleaseAssetURL "adobe-fonts/source-code-pro" (printf "OTF-source-code-pro-*.zip") }}'
   exact = false
   stripComponents = 1
+[".local/bin/rbw"]
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "doy/rbw" (printf "rbw_*_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
+  path = "rbw"
+  executable = true
+[".local/bin/rbw-agent"]
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "doy/rbw" (printf "rbw_*_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
+  path = "rbw-agent"
+  executable = true
 # ex: ts=4 sw=4 et filetype=toml
