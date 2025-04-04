@@ -7,6 +7,8 @@ case $- in
     *) return;;
 esac
 
+export MY_SHELL=${MY_SHELL:-bash}
+
 # # # prompt reset
 # unset PROMPT_COMMAND
 # # # Below is a bad example of PS1:
