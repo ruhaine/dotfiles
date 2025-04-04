@@ -40,6 +40,12 @@ wallpaperplugin=org.kde.image
 DialogHeight=540
 DialogWidth=720
 
+[Containments][129][General]
+filterMimeTypes=inode/directory
+filterMode=1
+positions={"1920x1080":[]}
+url=file:///home/daniel/C0D3
+
 [Containments][129][Wallpaper][org.kde.image][General]
 Image=/home/daniel/Pictures/deep-space-1366x768.jpg
 PreviewImage=/home/daniel/Pictures/deep-space-1366x768.jpg
@@ -62,7 +68,6 @@ DialogWidth=720
 
 [Containments][130][General]
 positions={"1920x1080":[]}
-url=file:///home/daniel/C0D3
 
 [Containments][130][Wallpaper][org.kde.image][General]
 Image=/home/daniel/Pictures/wp5126205-aesthetic-dark-galaxy-wallpapers.jpg
@@ -283,7 +288,7 @@ plugin=org.kde.plasma.kickoff
 [Containments][155][Applets][156][Configuration]
 PreloadWeight=100
 popupHeight=510
-popupWidth=659
+popupWidth=677
 
 [Containments][155][Applets][156][Configuration][ConfigDialog]
 DialogHeight=540
@@ -467,5 +472,5 @@ plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
 [ScreenMapping]
-itemsOnDisabledScreens=
-screenMapping=
+itemsOnDisabledScreens=0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,2,desktop:/steam.desktop,desktop:/Solo.Leveling.S02E09.It.was.All.Worth.It.1080p.CR.WEB-DL.AAC2.0.H.264-VARYG.srt,1,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,27,file:///home/daniel/C0D3/Games,file:///home/daniel/C0D3/Arduino,file:///home/daniel/C0D3/WORK,file:///home/daniel/C0D3/percona-server-mongodb-resources.yaml,file:///home/daniel/C0D3/External,file:///home/daniel/C0D3/bypass-paywalls-chrome-clean,file:///home/daniel/C0D3/try,file:///home/daniel/C0D3/Vagrantfile,file:///home/daniel/C0D3/Tools,file:///home/daniel/C0D3/quick-network-test.yaml,file:///home/daniel/C0D3/Rust,file:///home/daniel/C0D3/kube-vip.yaml,file:///home/daniel/C0D3/TODO,file:///home/daniel/C0D3/JS,file:///home/daniel/C0D3/Python,file:///home/daniel/C0D3/cloud-init.yml,file:///home/daniel/C0D3/Hobby,file:///home/daniel/C0D3/Security,file:///home/daniel/C0D3/percona-server-mongodb-operator.yaml,file:///home/daniel/C0D3/corosync,file:///home/daniel/C0D3/GO,file:///home/daniel/C0D3/Ansible,file:///home/daniel/C0D3/Remote,file:///home/daniel/C0D3/Github,file:///home/daniel/C0D3/Interviews,file:///home/daniel/C0D3/VPN,file:///home/daniel/C0D3/Hackerrank
+screenMapping=file:///home/daniel/C0D3/WORK,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/Interviews,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/kube-vip.yaml,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/External,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/quick-network-test.yaml,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/VPN,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/try,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/Github,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/Ansible,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/Rust,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/Vagrantfile,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/corosync,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/Arduino,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/Hackerrank,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/percona-server-mongodb-operator.yaml,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/TODO,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/JS,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/Tools,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/Remote,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/Python,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/cloud-init.yml,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/GO,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,desktop:/Solo.Leveling.S02E09.It.was.All.Worth.It.1080p.CR.WEB-DL.AAC2.0.H.264-VARYG.srt,1,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/percona-server-mongodb-resources.yaml,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/bypass-paywalls-chrome-clean,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,desktop:/steam.desktop,1,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/Games,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/Security,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0,file:///home/daniel/C0D3/Hobby,0,41d2aac2-d6aa-4c83-a65d-da52c1b5a0a0

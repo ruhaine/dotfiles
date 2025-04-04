@@ -4,7 +4,7 @@
 {{- end -}}
 {{- $secrets_homelab := false -}}
 {{- if (env "SECRETS_AT_HOME") -}}
-{{- $secrets = true -}}
+{{- $secrets_homelab = true -}}
 {{- end -}}
 
 encryption = "age"
