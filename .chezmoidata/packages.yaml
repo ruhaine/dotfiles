@@ -17,9 +17,14 @@ packages:
     - 'keepassxc'
     - 'moreutils'
     - 'pinentry-curses'
+    - 'python3-pip'
+    - 'python3-venv'
   epam_wsl:
     apt:
     - 'git'
     - 'keepassxc'
     - 'moreutils'
     - 'pinentry-curses'
+    - 'build-essential'
+    - 'python3-pip'
+    - 'python3-venv'
