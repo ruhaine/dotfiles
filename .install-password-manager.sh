@@ -24,7 +24,7 @@ function install_password_manager() {
 function install_password_manager_backup() {
   type rbw >/dev/null 2>&1 && exit
   mkdir -p ${USER_BIN_DIR}
-  curl -sLo rbw.tar.gz "https://github.com/doy/rbw/releases/download/1.13.2/rbw_1.13.2_linux_amd64.tar.gz" | funzip > bw
+  curl -sLo rbw.tar.gz "https://github.com/doy/rbw/releases/download/1.13.2/rbw_1.13.2_linux_amd64.tar.gz"
   tar xzf rbw.tar.gz
   install -m 0755 rbw ${USER_BIN_DIR}/rbw
   install -m 0755 rbw-agent ${USER_BIN_DIR}/rbw-agent
