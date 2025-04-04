@@ -11,3 +11,15 @@ packages:
     - 'kubeconform'
     - 'moreutils'
     - 'pinentry'
+  ubuntu:
+    apt:
+    - 'git'
+    - 'keepassxc'
+    - 'moreutils'
+    - 'pinentry-curses'
+  epam_wsl:
+    apt:
+    - 'git'
+    - 'keepassxc'
+    - 'moreutils'
+    - 'pinentry-curses'

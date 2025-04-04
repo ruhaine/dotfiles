@@ -2,6 +2,10 @@
 {{- if (env "SECRETS_OFF") -}}
 {{- $secrets = false -}}
 {{- end -}}
+{{- $secrets_homelab := false -}}
+{{- if (env "SECRETS_AT_HOME") -}}
+{{- $secrets = true -}}
+{{- end -}}
 
 encryption = "age"
 [age]
