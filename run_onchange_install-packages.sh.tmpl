@@ -11,8 +11,8 @@ EOF
 {{ end -}}
 {{ if eq .chezmoi.os "linux" -}}
   {{ if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
-apt update
-apt install -y --no-install-recommends {{ .packages.epam_wsl.apt | join " " }}
+sudo apt update
+sudo apt install -y --no-install-recommends {{ .packages.epam_wsl.apt | join " " }}
   # WSL-specific code
   {{   end -}}
   {{ if (.chezmoi.kernel.osrelease | lower | contains "manjaro") -}}
@@ -20,7 +20,7 @@ apt install -y --no-install-recommends {{ .packages.epam_wsl.apt | join " " }}
 yay -Syu --needed --noconfirm --noprogressbar {{ .packages.arch.yay | join " " }}
   {{   end -}}
   {{ if (.chezmoi.kernel.osrelease | lower | contains "ubuntu") -}}
-apt update
-apt install -y --no-install-recommends {{ .packages.ubuntu.apt | join " " }}
+sudo apt update
+sudo apt install -y --no-install-recommends {{ .packages.ubuntu.apt | join " " }}
   {{   end -}}
 {{ end -}}

@@ -70,7 +70,7 @@ bw_login() {
     # Define password file and OTP code
     PASSWORD_FILE=${PASSWORD_FILE:-".bw.${bitwarden}"}
     if [[ ! -f "$SAFE_FOLDER/$PASSWORD_FILE" ]]; then
-        echo "Error: Password dile '$PASSWORD_FILE' not found inside $SAFE_FOLDER !"
+        echo "Error: Password file '$PASSWORD_FILE' not found inside $SAFE_FOLDER !"
         exit 1
     fi
     OTP_CODE=${OTP_CODE:-"$(cat "$SAFE_FOLDER/$PASSWORD_FILE.otp" | _oathtool)"}

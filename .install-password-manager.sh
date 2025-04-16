@@ -17,7 +17,7 @@ function install_password_manager() {
   # exit immediately if password-manager-binary is already in $PATH
   type bw >/dev/null 2>&1 && exit
   mkdir -p ${USER_BIN_DIR}
-  curl -sL "https://github.com/bitwarden/clients/releases/download/cli-v2025.1.2/bw-linux-2025.1.2.zip" | funzip > bw
+  curl -sL "https://github.com/bitwarden/clients/releases/download/cli-v2025.3.0/bw-linux-2025.3.0.zip" | funzip > bw
   install -m 0755 bw ${USER_BIN_DIR}/bw
 }
 

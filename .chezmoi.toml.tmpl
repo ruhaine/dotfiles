@@ -32,7 +32,7 @@ encryption = "age"
   command = ".local/share/chezmoi/.install-password-manager.sh"
 [hooks.apply.post]
   command = "fc-cache"
-  args = ["-f", "-v"]
+  args = ["-f"]
 
 [data]
   secrets = {{ $secrets }}
