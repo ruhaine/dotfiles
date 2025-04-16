@@ -77,7 +77,7 @@ bw_login() {
 
     # Configure Bitwarden server based on local or remote usage
     if [ "$bitwarden" == "local" ]; then
-        bw config server "https://vaultwarden.xome.duckdns.org"
+        bw config server "https://vault.5rv.me"
     else
         bw config server "https://vault.bitwarden.com"
     fi
@@ -108,7 +108,7 @@ rbw_login() {
 
     # Configure Bitwarden server based on local or remote usage
     if [ "$bitwarden" == "local" ]; then
-      rbw config set base_url "https://vaultwarden.xome.duckdns.org"
+      rbw config set base_url "https://vault.5rv.me"
     else
       rbw config set base_url "https://vault.bitwarden.com"
     fi
