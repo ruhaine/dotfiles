@@ -11,20 +11,24 @@ packages:
     - 'kubeconform'
     - 'moreutils'
     - 'pinentry'
+    - 'python-pipx'
+    - 'python-pipenv'
   ubuntu:
     apt:
     - 'git'
     - 'keepassxc'
     - 'moreutils'
     - 'pinentry-curses'
+    - 'pipx'
     - 'python3-pip'
     - 'python3-venv'
   epam_wsl:
     apt:
+    - 'build-essential'
     - 'git'
     - 'keepassxc'
     - 'moreutils'
     - 'pinentry-curses'
-    - 'build-essential'
+    - 'pipx'
     - 'python3-pip'
     - 'python3-venv'

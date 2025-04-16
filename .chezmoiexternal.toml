@@ -186,11 +186,11 @@
 [".local/bin/uv"]
   type = "archive-file"
   url = '{{ gitHubLatestReleaseAssetURL "astral-sh/uv" (printf "uv-x86_64-unknown-%s-gnu.tar.gz" .chezmoi.os) }}'
-  path = "uv"
+  path = "uv-x86_64-unknown-%s-gnu/uv"
   executable = true
 [".local/bin/uvx"]
   type = "archive-file"
   url = '{{ gitHubLatestReleaseAssetURL "astral-sh/uv" (printf "uv-x86_64-unknown-%s-gnu.tar.gz" .chezmoi.os) }}'
-  path = "uvx"
+  path = "uv-x86_64-unknown-%s-gnu/uvx"
   executable = true
 # ex: ts=4 sw=4 et filetype=toml
