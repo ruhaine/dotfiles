@@ -182,4 +182,15 @@
   url = '{{ gitHubLatestReleaseAssetURL "doy/rbw" (printf "rbw_*_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
   path = "rbw-agent"
   executable = true
+# curl -LsSf https://astral.sh/uv/install.sh | sh
+[".local/bin/uv"]
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "astral-sh/uv" (printf "uv-x86_64-unknown-%s-gnu.tar.gz" .chezmoi.os) }}'
+  path = "uv"
+  executable = true
+[".local/bin/uvx"]
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "astral-sh/uv" (printf "uv-x86_64-unknown-%s-gnu.tar.gz" .chezmoi.os) }}'
+  path = "uvx"
+  executable = true
 # ex: ts=4 sw=4 et filetype=toml
