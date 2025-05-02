@@ -1,10 +1,14 @@
 {{- $secrets := true -}}
 {{- $secrets_homelab := false -}}
+{{- $extra_tools := false -}}
 {{- if (env "SECRETS_OFF") -}}
 {{- $secrets = false -}}
 {{- end -}}
 {{- if (env "SECRETS_AT_HOME") -}}
 {{- $secrets_homelab = true -}}
+{{- end -}}
+{{- if (env "EXTRA_TOOLS") -}}
+{{- $extra_tools = true -}}
 {{- end -}}
 
 encryption = "age"
@@ -37,3 +41,4 @@ encryption = "age"
 [data]
   secrets = {{ $secrets }}
   secrets_homelab = {{ $secrets_homelab }}
+  extra_tools = {{ $extra_tools }}

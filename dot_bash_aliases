@@ -93,7 +93,7 @@ new_venv() {
 
 new_lab() {
   new_venv && \
-  pip install -U numpy pandas matplotlib scikit-learn requests jupyterlab && \
+  $UV_IS_HERE pip install -U numpy pandas matplotlib scikit-learn requests jupyterlab && \
   jupyter lab --browser any
 }
 

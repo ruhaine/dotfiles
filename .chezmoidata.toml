@@ -1,5 +1,5 @@
 [tools.bw]
-    version = "2025.1.2"
+    version = "2025.3.0"
 [tools.bws]
     version = "1.0.0"
 [tools.direnv]
