@@ -86,6 +86,7 @@
   type = "archive-file"
   url = '{{ gitHubLatestReleaseAssetURL "derailed/k9s" (printf "k9s_Linux_%s*.tar.gz" .chezmoi.arch) }}'
   executable = true
+  path = "k9s"
 [".local/bin/age"]
   type = "archive-file"
   url = "https://github.com/FiloSottile/age/releases/download/v{{ .tools.age.version }}/age-v{{ .tools.age.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
