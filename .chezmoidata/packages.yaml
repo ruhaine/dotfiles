@@ -6,6 +6,7 @@ packages:
     - 'google-chrome'
   arch:
     yay:
+    - 'bash-completion'
     - 'git'
     - 'keepassxc'
     - 'kubeconform'
@@ -15,6 +16,7 @@ packages:
     - 'python-pipenv'
   ubuntu:
     apt:
+    - 'bash-completion'
     - 'git'
     - 'keepassxc'
     - 'moreutils'
@@ -24,6 +26,7 @@ packages:
     - 'python3-venv'
   epam_wsl:
     apt:
+    - 'bash-completion'
     - 'build-essential'
     - 'git'
     - 'keepassxc'
