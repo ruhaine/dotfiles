@@ -15,7 +15,7 @@
 [tools.go_task]
     version = "3.41.0"
 [tools.vagrant]
-    version = "2.4.3"
+    version = "2.4.5"
 [tools.rclone]
     version = "1.69.0"
 [tools.kopia]

@@ -31,6 +31,31 @@
   url = '{{ gitHubLatestReleaseAssetURL "nushell/nushell" (printf "nu-*-x86_64-unknown-%s-gnu*" .chezmoi.os) }}'
   exact = false
   stripComponents = 1
+[".local/bin/autok3s"]
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "cnrancher/autok3s" (printf "autok3s_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
+  executable = true
+[".local/bin/cloudflared"]
+  type = "file"
+  url = "https://github.com/cloudflare/cloudflared/releases/download/{{ .tools.cloudflared.version }}/cloudflared-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
+  executable = true
+[".local/bin/devspace"]
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "loft-sh/devspace" (printf "devspace-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
+  executable = true
+[".local/bin/argocd"]
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "argoproj/argo-cd" (printf "argocd-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
+  executable = true
+[".local/bin/kopia"]
+  type = "archive-file"
+  url = "https://github.com/kopia/kopia/releases/download/v{{ .tools.kopia.version }}/kopia-{{ .tools.kopia.version }}-{{ .chezmoi.os }}-x64.tar.gz"
+  executable = true
+  path = "kopia-{{ .tools.kopia.version }}-{{ .chezmoi.os }}-x64/kopia"
+[".local/bin/git-credential-keepassxc"]
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "Frederick888/git-credential-keepassxc" (printf "*ubuntu*full*") }}'
+  path = "git-credential-keepassxc"
 {{ end -}}
 [".local/bin/jq"]
   type = "file"
@@ -53,9 +78,9 @@
   type = "file"
   url = '{{ gitHubLatestReleaseAssetURL "k3d-io/k3d" (printf "k3d-%s-%s*" .chezmoi.os .chezmoi.arch) }}'
   executable = true
-[".local/bin/autok3s"]
-  type = "file"
-  url = '{{ gitHubLatestReleaseAssetURL "cnrancher/autok3s" (printf "autok3s_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
+[".local/bin/k9s"]
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "derailed/k9s" (printf "k9s_Linux_%s*.tar.gz" .chezmoi.arch) }}'
   executable = true
 [".local/bin/age"]
   type = "archive-file"
@@ -66,21 +91,9 @@
   type = "file"
   url = '{{ gitHubLatestReleaseAssetURL "getsops/sops" (printf "sops-*.%s.%s*" .chezmoi.os .chezmoi.arch ) }}'
   executable = true
-[".local/bin/cloudflared"]
-  type = "file"
-  url = "https://github.com/cloudflare/cloudflared/releases/download/{{ .tools.cloudflared.version }}/cloudflared-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
-  executable = true
-[".local/bin/devspace"]
-  type = "file"
-  url = '{{ gitHubLatestReleaseAssetURL "loft-sh/devspace" (printf "devspace-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
-  executable = true
 [".local/bin/vcluster"]
   type = "file"
   url = '{{ gitHubLatestReleaseAssetURL "loft-sh/vcluster" (printf "vcluster-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
-  executable = true
-[".local/bin/argocd"]
-  type = "file"
-  url = '{{ gitHubLatestReleaseAssetURL "argoproj/argo-cd" (printf "argocd-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
   executable = true
 [".local/bin/task"]
   type = "archive-file"
@@ -110,11 +123,6 @@
   url = '{{ gitHubLatestReleaseAssetURL "ajeetdsouza/zoxide" (printf "*x86_64-unknown-%s-musl*" .chezmoi.os) }}'
   executable = true
   path = "zoxide"
-[".local/bin/kopia"]
-  type = "archive-file"
-  url = "https://github.com/kopia/kopia/releases/download/v{{ .tools.kopia.version }}/kopia-{{ .tools.kopia.version }}-{{ .chezmoi.os }}-x64.tar.gz"
-  executable = true
-  path = "kopia-{{ .tools.kopia.version }}-{{ .chezmoi.os }}-x64/kopia"
 [".local/bin/helm"]
   type = "archive-file"
   url = "https://get.helm.sh/helm-v{{ .tools.helm.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
@@ -148,10 +156,6 @@
   {{ $fdVersion := (gitHubLatestRelease "sharkdp/fd").TagName }}
   url = '{{ gitHubLatestReleaseAssetURL "sharkdp/fd" (printf "fd-*-x86_64-unknown-%s-gnu*" .chezmoi.os) }}'
   path = "fd-{{ $fdVersion }}-x86_64-unknown-{{ .chezmoi.os }}-gnu/fd"
-[".local/bin/git-credential-keepassxc"]
-  type = "archive-file"
-  url = '{{ gitHubLatestReleaseAssetURL "Frederick888/git-credential-keepassxc" (printf "*ubuntu*full*") }}'
-  path = "git-credential-keepassxc"
 [".local/bin/rg"]
   type = "archive-file"
   {{ $rgVersion := (gitHubLatestRelease "BurntSushi/ripgrep").TagName }}
