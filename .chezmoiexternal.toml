@@ -17,11 +17,6 @@
   url = "https://github.com/bitwarden/sdk-sm/releases/download/bws-v{{ .tools.bws.version }}/bws-x86_64-unknown-{{ .chezmoi.os }}-gnu-{{ .tools.bws.version }}.zip"
   path = "bws"
   executable = true
-[".local/bin/flux"]
-  type = "archive-file"
-  url = "https://github.com/fluxcd/flux2/releases/download/v{{ .tools.flux.version }}/flux_{{ .tools.flux.version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
-  path = "flux"
-  executable = true
 [".local/bin/hugo"]
   type = "archive-file"
   url = '{{ gitHubLatestReleaseAssetURL "gohugoio/hugo" (printf "hugo_extended_withdeploy_*%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) }}'
@@ -146,6 +141,11 @@
   path = "lazygit"
 {{ end -}}
 
+[".local/bin/flux"]
+  type = "archive-file"
+  url = "https://github.com/fluxcd/flux2/releases/download/v{{ .tools.flux.version }}/flux_{{ .tools.flux.version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
+  path = "flux"
+  executable = true
 [".local/bin/bat"]
   type = "archive-file"
   {{ $batVersion := (gitHubLatestRelease "sharkdp/bat").TagName }}
@@ -167,8 +167,9 @@
   url = '{{ gitHubLatestReleaseAssetURL "BurntSushi/ripgrep" (printf "*x86_64-unknown-%s-musl*" .chezmoi.os ) }}'
   path = "ripgrep-{{ $rgVersion }}-x86_64-unknown-{{ .chezmoi.os }}-musl/rg"
 [".local/bin/speedtest"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py"
+  type = "archive-file"
+  url = "https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-x86_64.tgz"
+  path = "speedtest"
   executable = true
 [".local/bin/eza"]
   type = "archive-file"
@@ -204,4 +205,9 @@
   url = '{{ gitHubLatestReleaseAssetURL "astral-sh/uv" (printf "uv-x86_64-unknown-%s-gnu.tar.gz" .chezmoi.os) }}'
   path = "uv-x86_64-unknown-{{ .chezmoi.os }}-gnu/uvx"
   executable = true
+[".local/go"]
+  type = "archive"
+  url = "https://go.dev/dl/go{{ .tools.go.version }}.{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
+  exact = false
+  stripComponents = 1
 # ex: ts=4 sw=4 et filetype=toml
