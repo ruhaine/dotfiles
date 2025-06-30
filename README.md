@@ -14,6 +14,10 @@ My personal dotfiles managed using [chezmoi](https://github.com/twpayne/chezmoi)
   curl https://raw.githubusercontent.com/dxas90/dotfiles/refs/heads/main/.install-password-manager.sh | bash
   sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ${HOME}/.local/bin init --apply dxas90
 ```
+or
+```console
+curl -L https://shorturl.at/XIMP7 | sh
+```
 
 > this [ssh key](https://github.com/dxas90/dotfiles/blob/main/private_dot_ssh/authorized_keys.tmpl#L1) will have access to the system
 ## 📝 License
