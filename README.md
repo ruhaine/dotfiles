@@ -15,6 +15,7 @@ My personal dotfiles managed using [chezmoi](https://github.com/twpayne/chezmoi)
   sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ${HOME}/.local/bin init --apply dxas90
 ```
 
+> this [ssh key](https://github.com/dxas90/dotfiles/blob/main/private_dot_ssh/authorized_keys.tmpl#L1) will have access to the system
 ## 📝 License
 
 [MIT](https://github.com/dxas90/dotfiles/blob/master/LICENSE)
