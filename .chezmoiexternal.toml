@@ -179,7 +179,7 @@
 [".tmux.conf"]
   type = "file"
   url = 'https://raw.githubusercontent.com/gpakosz/.tmux/refs/heads/master/.tmux.conf'
-[".local/share/fonts/source-code-pro"]
+[".local/share/fonts"]
   type = "archive"
   url = '{{ gitHubLatestReleaseAssetURL "adobe-fonts/source-code-pro" (printf "OTF-source-code-pro-*.zip") }}'
   exact = false
