@@ -184,6 +184,11 @@
   url = '{{ gitHubLatestReleaseAssetURL "adobe-fonts/source-code-pro" (printf "OTF-source-code-pro-*.zip") }}'
   exact = false
   stripComponents = 1
+[".local/"]
+  type = "archive"
+  url = '{{ gitHubLatestReleaseAssetURL "neovim/neovim" (printf "nvim-*%s-x86_64.tar.gz" .chezmoi.os) }}'
+  exact = false
+  stripComponents = 1
 [".local/bin/rbw"]
   type = "archive-file"
   url = '{{ gitHubLatestReleaseAssetURL "doy/rbw" (printf "rbw_*_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
