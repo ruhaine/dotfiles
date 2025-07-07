@@ -66,20 +66,6 @@ function install_password_manager_backup_macos() {
   install -m 0755 target/release/rbw-agent "${USER_BIN_DIR}/rbw-agent"
 }
 
-if [[ "$OS_TYPE" == "Linux" ]]; then
-  echo "Detected Linux OS"
-  install_password_manager_linux
-  install_password_manager_backup_linux
-elif [[ "$OS_TYPE" == "Darwin" ]]; then
-  echo "Detected macOS"
-  install_or_update_rust
-  install_password_manager_macos
-  install_password_manager_backup_macos
-else
-  echo "Unsupported OS: $OS_TYPE"
-  exit 1
-fi
-
 function install_password_manager() {
   mkdir -p "${USER_BIN_DIR}"
   if [[ "$OS_TYPE" == "Linux" ]]; then
