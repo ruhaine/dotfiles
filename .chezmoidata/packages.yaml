@@ -1,9 +1,9 @@
 packages:
   darwin:
     brews:
-    - 'git'
-    casks:
-    - 'google-chrome'
+    - 'htop'
+    - 'btop'
+    - 'jq'
   arch:
     yay:
     - 'bash-completion'

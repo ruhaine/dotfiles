@@ -5,26 +5,26 @@
 [tools.direnv]
     version = "2.32.3"
 [tools.kubectl]
-    version = "1.32.1"
+    version = "1.33.2"
 [tools.flux]
     version = "2.4.0"
 [tools.age]
     version = "1.2.1"
 [tools.cloudflared]
-    version = "2025.2.0"
+    version = "2025.7.0"
 [tools.go_task]
     version = "3.41.0"
 [tools.vagrant]
     version = "2.4.5"
 [tools.rclone]
-    version = "1.69.0"
+    version = "1.70.2"
 [tools.kopia]
-    version = "0.19.0"
+    version = "0.20.1"
 [tools.helm]
     version = "3.17.0"
 [tools.linkerd2]
     version = "25.1.2"
 [tools.terraform]
-    version = "1.10.5"
+    version = "1.12.2"
 [tools.go]
     version = "1.24.4"
