@@ -5,6 +5,8 @@ packages:
     - 'btop'
     - 'htop'
     - 'jq'
+    - 'pinentry-mac'
+    - 'pinentry'
     - 'tmux'
     casks:
     - 'bash-completion'

@@ -6,3 +6,6 @@ LICENSE
 test/
 login-with-password-manager
 Brewfile
+{{- if ne .chezmoi.os "darwin" -}}
+private_Library/private_Application Support/private_rbw/symlink_config.json
+{{- end -}}
