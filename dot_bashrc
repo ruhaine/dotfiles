@@ -8,6 +8,7 @@ case $- in
 esac
 
 export MY_SHELL=${MY_SHELL:-bash}
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # # # prompt reset
 # unset PROMPT_COMMAND
