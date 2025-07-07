@@ -4,6 +4,8 @@ packages:
     - 'htop'
     - 'btop'
     - 'jq'
+    casks:
+    - 'bash-completion'
   arch:
     yay:
     - 'bash-completion'
