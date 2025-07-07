@@ -73,6 +73,11 @@
   type = "file"
   url = "https://dl.k8s.io/release/v{{ .tools.kubectl.version }}/bin/{{ .chezmoi.os }}/{{ .chezmoi.arch }}/kubectl"
   executable = true
+[".local/bin/kubelogin"]
+  type = "archive-file"
+  url = '{{ gitHubLatestReleaseAssetURL "int128/kubelogin" (printf "kubelogin_%s_%s.zip" .chezmoi.os .chezmoi.arch) }}'
+  executable = true
+  path = "kubelogin"
 [".local/bin/k3d"]
   type = "file"
   url = '{{ gitHubLatestReleaseAssetURL "k3d-io/k3d" (printf "k3d-%s-%s*" .chezmoi.os .chezmoi.arch) }}'
