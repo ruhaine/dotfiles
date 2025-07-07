@@ -9,12 +9,24 @@ fi
 
 export GOROOT=$HOME/.local/go
 
-export XDG_RUNTIME_DIR=/run/user/$UID
+# Determine OS
+OS_TYPE="$(uname -s)"
+
+# Fallback for XDG_RUNTIME_DIR on macOS
+if [[ "$OS_TYPE" == "Darwin" ]]; then
+  export XDG_RUNTIME_DIR="${TMPDIR:-/tmp}/run-${UID}"
+else
+  export XDG_RUNTIME_DIR="/run/user/$UID"
+fi
+
 export XDG_CONFIG_HOME=${HOME}/.config
 export XDG_CACHE_HOME=${HOME}/.cache
 export XDG_DATA_HOME=${HOME}/.local/share
 export XDG_STATE_HOME=${HOME}/.local/state
-export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+# D-Bus session bus address (mostly relevant to Linux)
+if [[ "$OS_TYPE" != "Darwin" ]]; then
+  export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+fi
 
 export LANG=en_US.UTF-8
 export VISUAL=nvim
@@ -23,7 +35,7 @@ export GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChec
 
 export DOCKER_CLI_EXPERIMENTAL="enabled"
 export GS_OPTIONS="-sPAPERSIZE=a4"
-export MY_SHELL="$(basename $(readlink /proc/$$/exe))"
+export MY_SHELL="$(ps -p $$ -o comm= | sed 's/^-//')" # old only linux basename $(readlink /proc/$$/exe)
 export TMUX_TMPDIR="${XDG_RUNTIME_DIR:-"/run/user/$(id -u)"}"
 export PYENV_ROOT="$HOME/.pyenv"
 

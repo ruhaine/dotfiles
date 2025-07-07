@@ -1,11 +1,16 @@
 packages:
   darwin:
     brews:
-    - 'htop'
+    - 'bash'
     - 'btop'
+    - 'htop'
     - 'jq'
+    - 'tmux'
     casks:
     - 'bash-completion'
+    - 'google-chrome'
+    - 'iterm2'
+    - 'visual-studio-code'
   arch:
     yay:
     - 'bash-completion'
