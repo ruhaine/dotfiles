@@ -38,6 +38,7 @@ function install_password_manager_backup_linux() {
 }
 
 function install_or_update_rust() {
+  source "$HOME/.cargo/env" || true
   if command -v rustup >/dev/null 2>&1; then
     echo "Rust is already installed. Updating..."
     rustup self update
