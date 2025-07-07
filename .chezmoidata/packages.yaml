@@ -8,6 +8,7 @@ packages:
     - 'tmux'
     casks:
     - 'bash-completion'
+    - 'font-source-code-pro'
     - 'google-chrome'
     - 'iterm2'
     - 'visual-studio-code'

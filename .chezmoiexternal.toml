@@ -227,11 +227,13 @@
 [".tmux.conf"]
   type = "file"
   url = 'https://raw.githubusercontent.com/gpakosz/.tmux/refs/heads/master/.tmux.conf'
+{{ if eq .chezmoi.os "linux" -}}
 [".local/share/fonts"]
   type = "archive"
   url = '{{ gitHubLatestReleaseAssetURL "adobe-fonts/source-code-pro" (printf "OTF-source-code-pro-*.zip") }}'
   exact = false
   stripComponents = 1
+{{ end -}}
 [".local/"]
   type = "archive"
   exact = false
