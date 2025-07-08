@@ -3,8 +3,8 @@
 # for examples
 # Enable the subsequent settings only in interactive sessions
 case $- in
-  *i*) ;;
-    *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 export MY_SHELL=${MY_SHELL:-bash}
@@ -57,6 +57,8 @@ if ! shopt -oq posix; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
+  elif [ -f /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
+    . "/opt/homebrew/etc/profile.d/bash_completion.sh"
   fi
 fi
 
