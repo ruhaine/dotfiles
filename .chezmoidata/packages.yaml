@@ -4,6 +4,7 @@ packages:
     - 'bash'
     - 'bash-completion'
     - 'btop'
+    - 'fontconfig'
     - 'htop'
     - 'jq'
     - 'pinentry-mac'
