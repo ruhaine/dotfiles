@@ -2,6 +2,7 @@ packages:
   darwin:
     brews:
     - 'bash'
+    - 'bash-completion'
     - 'btop'
     - 'htop'
     - 'jq'
@@ -9,7 +10,6 @@ packages:
     - 'pinentry'
     - 'tmux'
     casks:
-    - 'bash-completion'
     - 'font-source-code-pro'
     - 'google-chrome'
     - 'iterm2'
