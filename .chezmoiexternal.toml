@@ -281,4 +281,21 @@
   url = "https://go.dev/dl/go{{ .tools.go.version }}.{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
   exact = false
   stripComponents = 1
+
+[".local/bin/operator-sdk"]
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "operator-framework/operator-sdk" (printf "operator-sdk_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
+  executable = true
+[".local/bin/helm-operator"]
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "operator-framework/operator-sdk" (printf "helm-operator_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
+  executable = true
+[".local/bin/colima"]
+  type = "file"
+  executable = true
+{{ if eq .chezmoi.os "darwin" -}}
+  url = '{{ gitHubLatestReleaseAssetURL "abiosoft/colima" (printf "*Darwin-arm64*" ) }}'
+{{ else if eq .chezmoi.os "linux" -}}
+  url = '{{ gitHubLatestReleaseAssetURL "abiosoft/colima" (printf "*Linux-x86_64*" ) }}'
+{{ end -}}
 # ex: ts=4 sw=4 et filetype=toml

@@ -61,11 +61,9 @@ function install_password_manager_backup_macos() {
 }
 
 if [[ "$OS_TYPE" == "Linux" ]]; then
-  echo "Detected Linux OS"
   install_password_manager_linux
   install_password_manager_backup_linux
 elif [[ "$OS_TYPE" == "Darwin" ]]; then
-  echo "Detected macOS"
   install_or_update_rust
   install_password_manager_macos
   install_password_manager_backup_macos
