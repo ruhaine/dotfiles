@@ -3,7 +3,7 @@
 # Enable only in interactive sessions
 [[ $- != *i* ]] && return
 
-export MY_SHELL=${MY_SHELL:-zsh}
+export MY_SHELL=zsh
 
 # Prompt
 autoload -Uz colors && colors
@@ -12,7 +12,7 @@ PROMPT="%F{green}%n%f%F{white}@%f%F{gray}%m%f%F{white}:%f%F{yellow}%~%f %F{white
 
 # env-secrets
 [[ -f "$HOME/.env-secrets" ]] && source "$HOME/.env-secrets"
-for script in "$HOME/.env-secrets.d/"*.sh; do [[ -f "$script" ]] && source "$script"; done
+for script in "$HOME/.env-secrets.d/"*.sh(.N); do [[ -f "$script" ]] && source "$script"; done
 
 [[ -f ~/.bw_session ]] && source ~/.bw_session
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"

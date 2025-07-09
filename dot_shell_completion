@@ -7,6 +7,15 @@ type task >/dev/null 2>&1 && eval "$(task --completion $MY_SHELL)"
 # type uv >/dev/null 2>&1 && eval "$(uv generate-shell-completion $MY_SHELL)"
 # type uvx >/dev/null 2>&1 && eval "$(uvx generate-shell-completion $MY_SHELL)"
 
+# Detect shell
+if [ -n "$ZSH_VERSION" ]; then
+  # --- Zsh-specific completion setup ---
+  # Enable completion system
+  autoload -Uz compinit bashcompinit
+  compinit
+  bashcompinit
+fi
+
 complete -F __start_kubectl k
 complete -o default -o nospace -F __start_chezmoi cm
 complete -F _task t
