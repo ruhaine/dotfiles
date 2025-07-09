@@ -4,6 +4,7 @@ packages:
     - 'bash'
     - 'bash-completion'
     - 'btop'
+    - 'coreutils'
     - 'fontconfig'
     - 'htop'
     - 'jq'
@@ -28,6 +29,7 @@ packages:
   ubuntu:
     apt:
     - 'bash-completion'
+    - 'coreutils'
     - 'git'
     - 'keepassxc'
     - 'moreutils'
@@ -39,6 +41,7 @@ packages:
     apt:
     - 'bash-completion'
     - 'build-essential'
+    - 'coreutils'
     - 'git'
     - 'keepassxc'
     - 'moreutils'

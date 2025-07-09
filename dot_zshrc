@@ -1,0 +1,60 @@
+# ~/.zshrc: executed by zsh for interactive shells.
+
+# Enable only in interactive sessions
+[[ $- != *i* ]] && return
+
+export MY_SHELL=${MY_SHELL:-zsh}
+
+# Prompt
+autoload -Uz colors && colors
+setopt PROMPT_SUBST
+PROMPT="%F{green}%n%f%F{white}@%f%F{gray}%m%f%F{white}:%f%F{yellow}%~%f %F{white}%#%f "
+
+# env-secrets
+[[ -f "$HOME/.env-secrets" ]] && source "$HOME/.env-secrets"
+for script in "$HOME/.env-secrets.d/"*.sh; do [[ -f "$script" ]] && source "$script"; done
+
+[[ -f ~/.bw_session ]] && source ~/.bw_session
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+[[ -f ~/Vaults/work/.key_values ]] && source ~/Vaults/work/.key_values
+
+if type direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=100000
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+export HISTIGNORE="ls:ps:history:htop:df:lens"
+
+# Aliases
+alias ...='cd ../..'
+type bat >/dev/null 2>&1 && alias cat='bat -p'
+alias g='git'
+type nvim >/dev/null 2>&1 && alias vim='nvim'
+if type nvim >/dev/null 2>&1; then
+  export MANPAGER='nvim +Man!'
+else
+  export MANPAGER='less -s -M +Gg'
+fi
+type uv >/dev/null 2>&1 && export UV_IS_HERE="uv" || export UV_IS_HERE=""
+
+# Completion
+autoload -Uz compinit && compinit
+if [[ -f /opt/homebrew/etc/profile.d/bash_completion.sh ]]; then
+  source /opt/homebrew/etc/profile.d/bash_completion.sh
+fi
+
+[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
+[[ -f ~/.bash_completion ]] && source ~/.bash_completion
+[[ -f ~/.shell_aliases ]] && source ~/.shell_aliases
+[[ -f ~/.shell_completion ]] && source ~/.shell_completion
+
+# Starship prompt
+if type starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi

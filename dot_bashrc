@@ -64,6 +64,8 @@ fi
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 [ -f ~/.bash_completion ] && source ~/.bash_completion
+[ -f ~/.shell_aliases ] && source ~/.shell_aliases
+[ -f ~/.shell_completion ] && source ~/.shell_completion
 
 type starship >/dev/null 2>&1 && source <(starship init $MY_SHELL)
 
