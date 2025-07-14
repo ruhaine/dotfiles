@@ -10,6 +10,7 @@ packages:
     - 'jq'
     - 'pinentry-mac'
     - 'pinentry'
+    - 'tcl-tk'
     - 'tmux'
     casks:
     - 'font-source-code-pro'
@@ -32,11 +33,13 @@ packages:
     - 'coreutils'
     - 'git'
     - 'keepassxc'
+    - 'libtk8.6'
     - 'moreutils'
     - 'pinentry-curses'
     - 'pipx'
     - 'python3-pip'
     - 'python3-venv'
+    - 'tk-dev'
   epam_wsl:
     apt:
     - 'bash-completion'
@@ -44,8 +47,10 @@ packages:
     - 'coreutils'
     - 'git'
     - 'keepassxc'
+    - 'libtk8.6'
     - 'moreutils'
     - 'pinentry-curses'
     - 'pipx'
     - 'python3-pip'
     - 'python3-venv'
+    - 'tk-dev'
