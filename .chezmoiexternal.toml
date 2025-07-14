@@ -88,7 +88,7 @@
   type = "file"
   url = "https://dl.k8s.io/release/v{{ .tools.kubectl.version }}/bin/{{ .chezmoi.os }}/{{ .chezmoi.arch }}/kubectl"
   executable = true
-[".local/bin/kubelogin"]
+[".local/bin/kubectl-oidc_login"]
   type = "archive-file"
   url = '{{ gitHubLatestReleaseAssetURL "int128/kubelogin" (printf "kubelogin_%s_%s.zip" .chezmoi.os .chezmoi.arch) }}'
   executable = true
@@ -310,5 +310,21 @@
 [".pyenv"]
 type = "git-repo"
 url = "https://github.com/pyenv/pyenv.git"
+[".local/bin/k6"]
+  type = "archive-file"
+  executable = true
+{{ $k6sVersion := (gitHubLatestRelease "grafana/k6").TagName }}
+{{ if eq .chezmoi.os "darwin" -}}
+  url = '{{ gitHubLatestReleaseAssetURL "grafana/k6" (printf "k6-*-macos-%s.tar.gz" .chezmoi.arch) }}'
+  path = "k6-{{ $k6sVersion }}-macos-{{ .chezmoi.arch }}/k6"
+{{ else if eq .chezmoi.os "linux" -}}
+  url = '{{ gitHubLatestReleaseAssetURL "grafana/k6" (printf "k6-*-%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) }}'
+  path = "k6-{{ $k6sVersion }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}/k6"
+{{ end -}}
+[".local/bin/kubectl-krew"]
+  type = "archive-file"
+  executable = true
+  url = '{{ gitHubLatestReleaseAssetURL "kubernetes-sigs/krew" (printf "krew-%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) }}'
+  path = "./krew-{{ .chezmoi.os }}_{{ .chezmoi.arch }}"
 
 # ex: ts=4 sw=4 et filetype=toml
