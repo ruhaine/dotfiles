@@ -298,4 +298,17 @@
 {{ else if eq .chezmoi.os "linux" -}}
   url = '{{ gitHubLatestReleaseAssetURL "abiosoft/colima" (printf "*Linux-x86_64*" ) }}'
 {{ end -}}
+[".local/google-cloud-sdk"]
+  type = "archive"
+  exact = false
+  stripComponents = 1
+{{ if eq .chezmoi.os "darwin" -}}
+  url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-darwin-arm.tar.gz"
+{{ else if eq .chezmoi.os "linux" -}}
+  url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz"
+{{ end -}}
+[".pyenv"]
+type = "git-repo"
+url = "https://github.com/pyenv/pyenv.git"
+
 # ex: ts=4 sw=4 et filetype=toml

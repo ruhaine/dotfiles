@@ -69,4 +69,9 @@ fi
 
 type starship >/dev/null 2>&1 && source <(starship init $MY_SHELL)
 
+if [ -f ${HOME}/.local/google-cloud-sdk/path.bash.inc ]; then . ${HOME}/.local/google-cloud-sdk/path.bash.inc; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f ${HOME}/.local/google-cloud-sdk/completion.bash.inc ]; then . ${HOME}/.local/google-cloud-sdk/completion.bash.inc; fi
+
 # ex: ts=4 sw=4 et filetype=sh
