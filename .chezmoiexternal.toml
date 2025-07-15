@@ -318,5 +318,9 @@ url = "https://github.com/pyenv/pyenv.git"
   executable = true
   url = '{{ gitHubLatestReleaseAssetURL "kubernetes-sigs/krew" (printf "krew-%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) }}'
   path = "./krew-{{ .chezmoi.os }}_{{ .chezmoi.arch }}"
+[".local/bin/minikube"]
+  type = "file"
+  executable = true
+  url = '{{ gitHubLatestReleaseAssetURL "kubernetes/minikube" (printf "minikube-%s-%s" .chezmoi.os .chezmoi.arch) }}'
 
 # ex: ts=4 sw=4 et filetype=toml
