@@ -290,14 +290,6 @@
   type = "file"
   url = '{{ gitHubLatestReleaseAssetURL "operator-framework/operator-sdk" (printf "helm-operator_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
   executable = true
-[".local/bin/colima"]
-  type = "file"
-  executable = true
-{{ if eq .chezmoi.os "darwin" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "abiosoft/colima" (printf "*Darwin-arm64*" ) }}'
-{{ else if eq .chezmoi.os "linux" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "abiosoft/colima" (printf "*Linux-x86_64*" ) }}'
-{{ end -}}
 [".local/google-cloud-sdk"]
   type = "archive"
   exact = false
@@ -315,7 +307,7 @@ url = "https://github.com/pyenv/pyenv.git"
   executable = true
 {{ $k6sVersion := (gitHubLatestRelease "grafana/k6").TagName }}
 {{ if eq .chezmoi.os "darwin" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "grafana/k6" (printf "k6-*-macos-%s.tar.gz" .chezmoi.arch) }}'
+  url = '{{ gitHubLatestReleaseAssetURL "grafana/k6" (printf "k6-*-macos-%s.zip" .chezmoi.arch) }}'
   path = "k6-{{ $k6sVersion }}-macos-{{ .chezmoi.arch }}/k6"
 {{ else if eq .chezmoi.os "linux" -}}
   url = '{{ gitHubLatestReleaseAssetURL "grafana/k6" (printf "k6-*-%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) }}'

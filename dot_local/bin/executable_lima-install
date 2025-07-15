@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# https://lima-vm.io/docs/installation/
+
+VERSION=$(curl -fsSL https://api.github.com/repos/lima-vm/lima/releases/latest | jq -r .tag_name)
+curl -fsSL "https://github.com/lima-vm/lima/releases/download/${VERSION}/lima-${VERSION:1}-$(uname -s)-$(uname -m).tar.gz" | tar Cxzvm ~/.local
+
+# For Lima v1.1 onward
+curl -fsSL "https://github.com/lima-vm/lima/releases/download/${VERSION}/lima-additional-guestagents-${VERSION:1}-$(uname -s)-$(uname -m).tar.gz" | tar Cxzvm ~/.local
+
+COLIMA_VERSION=$(curl -fsSL https://api.github.com/repos/abiosoft/colima/releases/latest | jq -r .tag_name)
+
+curl -fsSLo ~/.local/bin/colima  https://github.com/abiosoft/colima/releases/download/${COLIMA_VERSION}/colima-$(uname -s)-$(uname -m)
+
+chmod +x ~/.local/bin/colima
