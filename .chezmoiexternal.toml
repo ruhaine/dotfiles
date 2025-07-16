@@ -323,4 +323,23 @@ url = "https://github.com/pyenv/pyenv.git"
   executable = true
   url = '{{ gitHubLatestReleaseAssetURL "kubernetes/minikube" (printf "minikube-%s-%s" .chezmoi.os .chezmoi.arch) }}'
 
+[".local/bin/croc"]
+  type = "archive-file"
+  executable = true
+  path = "croc"
+{{ if eq .chezmoi.os "darwin" -}}
+  url = {{ gitHubLatestReleaseAssetURL "schollz/croc" "croc_v*_macOS-ARM64.tar.gz" | quote }}
+{{ else if eq .chezmoi.os "linux" -}}
+  url = {{ gitHubLatestReleaseAssetURL "schollz/croc" "croc_v*_Linux-64bit.tar.gz" | quote }}
+{{ end -}}
+[".local/bin/glow"]
+    type = "archive-file"
+    executable = true
+    stripComponents = 1
+    path = "glow"
+{{ if eq .chezmoi.os "darwin" -}}
+    url = {{ gitHubLatestReleaseAssetURL "charmbracelet/glow" "glow_*_Darwin_arm64.tar.gz" | quote }}
+{{ else if eq .chezmoi.os "linux" -}}
+    url = {{ gitHubLatestReleaseAssetURL "charmbracelet/glow" "glow_*_Linux_x86_64.tar.gz" | quote }}
+{{ end -}}
 # ex: ts=4 sw=4 et filetype=toml

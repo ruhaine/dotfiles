@@ -9,6 +9,7 @@ fi
 
 export GOROOT=$HOME/.local/go
 export GOPROXY="https://proxy.golang.org|direct"
+export GO111MODULE="on"
 
 # Determine OS
 OS_TYPE="$(uname -s)"
