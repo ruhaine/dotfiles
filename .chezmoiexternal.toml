@@ -97,6 +97,10 @@
   type = "file"
   url = '{{ gitHubLatestReleaseAssetURL "k3d-io/k3d" (printf "k3d-%s-%s*" .chezmoi.os .chezmoi.arch) }}'
   executable = true
+[".local/bin/kind"]
+  type = "file"
+  url = '{{ gitHubLatestReleaseAssetURL "kubernetes-sigs/kind" (printf "kind-%s-%s*" .chezmoi.os .chezmoi.arch) }}'
+  executable = true
 [".local/bin/k9s"]
   type = "archive-file"
   executable = true

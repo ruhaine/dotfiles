@@ -19,14 +19,14 @@ OS_TYPE="$(uname -s)"
 
 
 function install_password_manager_linux() {
-  type bw >/dev/null 2>&1 && exit
+  type bw >/dev/null 2>&1 && return
   mkdir -p "${USER_BIN_DIR}"
   curl -sL "https://github.com/bitwarden/clients/releases/download/cli-v2025.6.1/bw-linux-2025.6.1.zip" | funzip > bw
   install -m 0755 bw "${USER_BIN_DIR}/bw"
 }
 
 function install_password_manager_macos() {
-  type bw >/dev/null 2>&1 && exit
+  type bw >/dev/null 2>&1 && return
   mkdir -p "${USER_BIN_DIR}"
   curl -sL "https://github.com/bitwarden/clients/releases/download/cli-v2025.6.1/bw-macos-2025.6.1.zip" | funzip > bw
   install -m 0755 bw "${USER_BIN_DIR}/bw"
