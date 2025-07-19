@@ -6,6 +6,7 @@ Wants=network-online.target
 [Install]
 WantedBy=default.target
 
+# systemctl --user start home-daniel-C0D3-Remote.mount
 [Mount]
 What=dell:/home/daniel/C0D3
 Where=/home/daniel/C0D3/Remote

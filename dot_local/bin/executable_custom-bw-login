@@ -14,8 +14,6 @@ function finish {
 
 trap finish EXIT
 
-# Define the default safe folder location
-SAFE_FOLDER=${SAFE_FOLDER:-"$HOME/Vaults/Safe"}
 USER_BIN_DIR="${HOME:-"~"}/.local/bin"
 OS_TYPE="$(uname -s)"
 
@@ -111,24 +109,12 @@ _oathtool() {
 
 # Function to log into Bitwarden and handle session management
 bw_login() {
-    if [[ ! -d "$SAFE_FOLDER" ]]; then
-        echo "Error: Safe directory '$SAFE_FOLDER' not found!"
-        exit 1
-    fi
     install_password_manager
     install_oathtool
     local bitwarden=${1:-"remote"}  # Default to "remote" if no argument is given
 
     # Logout from any existing session (ignores errors if already logged out)
     bw logout >/dev/null 2>&1 || true
-
-    # Define password file and OTP code
-    PASSWORD_FILE=${PASSWORD_FILE:-".bw.${bitwarden}"}
-    if [[ ! -f "$SAFE_FOLDER/$PASSWORD_FILE" ]]; then
-        echo "Error: Password file '$PASSWORD_FILE' not found inside $SAFE_FOLDER !"
-        exit 1
-    fi
-    OTP_CODE=${OTP_CODE:-"$(cat "$SAFE_FOLDER/$PASSWORD_FILE.otp" | _oathtool)"}
 
     # Configure Bitwarden server based on local or remote usage
     if [ "$bitwarden" == "local" ]; then
@@ -138,7 +124,7 @@ bw_login() {
     fi
 
     # Attempt to log in and retrieve a session key
-    BW_SESSION=$(bw login "${BW_USER:-dxas90@gmail.com}" --method 0 --code "$OTP_CODE" --passwordfile "$SAFE_FOLDER/$PASSWORD_FILE" --raw)
+    BW_SESSION=$(bw login "${BW_USER:-dxas90@gmail.com}" --method 0 --raw)
 
     # Check if login was successful
     if [ -n "$BW_SESSION" ]; then
@@ -146,7 +132,7 @@ bw_login() {
         export BW_SESSION="$BW_SESSION"
 
         # Unlock Bitwarden vault and sync data
-        bw unlock --check --passwordfile "$SAFE_FOLDER/$PASSWORD_FILE"
+        bw unlock --check
         bw sync
     else
         echo "Bitwarden login failed."
