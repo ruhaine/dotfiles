@@ -349,7 +349,8 @@ url = "https://github.com/pyenv/pyenv.git"
 [".local/bin/vault"]
   type = "archive-file"
   executable = true
-{{ $vaultVersion := (gitHubLatestRelease "hashicorp/vault").TagName }}
+{{ $vaultVersionRaw := (gitHubLatestRelease "hashicorp/vault").TagName }}
+{{ $vaultVersion := trimPrefix "v" $vaultVersionRaw }}
   url = 'https://releases.hashicorp.com/vault/{{ $vaultVersion }}/vault_{{ $vaultVersion }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.zip'
   path = "vault_{{ $vaultVersion }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}/vault"
 
