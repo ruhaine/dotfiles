@@ -10,8 +10,9 @@
 {{- if (env "EXTRA_TOOLS") -}}
 {{- $extra_tools = true -}}
 {{- end -}}
+{{- $has_age_key := not (eq (stat (joinPath (env "HOME") ".config/chezmoi/key.txt")) nil) -}}
 
-{{- if stat (joinPath (env "HOME") ".config/chezmoi/key.txt") }}
+{{- if $has_age_key }}
 encryption = "age"
 [age]
   identity = "~/.config/chezmoi/key.txt"
@@ -44,3 +45,4 @@ encryption = "age"
   secrets = {{ $secrets }}
   secrets_homelab = {{ $secrets_homelab }}
   extra_tools = {{ $extra_tools }}
+  has_age_key = {{ $has_age_key }}
