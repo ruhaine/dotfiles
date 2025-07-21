@@ -16,7 +16,7 @@ My personal dotfiles managed using [chezmoi](https://github.com/twpayne/chezmoi)
 ```
 or
 ```console
-curl -L https://shorturl.at/AQgT2 | bash
+curl -L https://shorturl.at/wSJRm | bash
 ```
 
 > this [ssh key](https://github.com/dxas90/dotfiles/blob/main/private_dot_ssh/authorized_keys.tmpl#L1) will have access to the system
