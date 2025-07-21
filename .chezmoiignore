@@ -10,7 +10,7 @@ Brewfile
 {{ if ne .chezmoi.os "darwin" -}}
 private_Library/*
 Library/*
-{{- end -}}
+{{ end -}}
 {{- if not (stat (joinPath (env "HOME") ".config/chezmoi/key.txt")) -}}
-**/sops/age/*.age
+.config/sops/age/keys.txt.age
 {{- end -}}
