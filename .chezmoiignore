@@ -11,3 +11,6 @@ Brewfile
 private_Library/*
 Library/*
 {{- end -}}
+{{- if not (stat (joinPath (env "HOME") ".config/chezmoi/key.txt")) -}}
+dot_config/sops/age/encrypted_private_keys.txt.age
+{{- end -}}
