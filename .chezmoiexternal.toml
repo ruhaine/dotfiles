@@ -346,4 +346,11 @@ url = "https://github.com/pyenv/pyenv.git"
 {{ else if eq .chezmoi.os "linux" -}}
     url = {{ gitHubLatestReleaseAssetURL "charmbracelet/glow" "glow_*_Linux_x86_64.tar.gz" | quote }}
 {{ end -}}
+[".local/bin/vault"]
+  type = "archive-file"
+  executable = true
+{{ $vaultVersion := (gitHubLatestRelease "hashicorp/vault").TagName }}
+  url = 'https://releases.hashicorp.com/vault/{{ $vaultVersion }}/vault_{{ $vaultVersion }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.zip'
+  path = "vault_{{ $vaultVersion }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}/vault"
+
 # ex: ts=4 sw=4 et filetype=toml
