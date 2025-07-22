@@ -18,13 +18,14 @@ Host *
 {{- if (env "XDG_RUNTIME_DIR") }}
   IdentityAgent {{ env "XDG_RUNTIME_DIR" }}/ssh-agent.socket              # Specify custom SSH agent socket for authentication
 {{- end }}
-  IdentityFile /home/daniel/.ssh/id_ed25519                  # ED25519 key (recommended for modern systems)
-  IdentityFile /home/daniel/.ssh/id_rsa                      # RSA key
-  IdentityFile /home/daniel/.ssh/id_ecdsa                    # ECDSA key
-  IdentityFile /home/daniel/.ssh/automation                  # Custom key for automation (ED25519)
+  IdentityFile id_ed25519                                    # ED25519 key (recommended for modern systems)
+  IdentityFile id_rsa                                        # RSA key
+  IdentityFile id_ecdsa                                      # ECDSA key
+  IdentityFile automation                                    # Custom key for automation (ED25519)
 
 # Include additional configurations
 Include config.d/*
+Include ~/.config/colima/ssh_config
 
 # Tor hidden services
 Host *.onion
