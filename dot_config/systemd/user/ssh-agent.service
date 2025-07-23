@@ -3,7 +3,7 @@ Description=SSH key agent
 
 [Service]
 Type=simple
-ExecStart=/home/daniel/.local/bin/my-ssh-agent
+ExecStart=my-ssh-agent
 
 [Install]
 WantedBy=default.target

@@ -4,7 +4,7 @@ alias cm="$HOME/.local/bin/chezmoi"
 alias docwget='/usr/bin/wget -U "5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36" -c -k -r '
 alias fix-ssh='killall ssh-agent; SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"; export SSH_AUTH_SOCK; ssh-agent -a $SSH_AUTH_SOCK; ssh-add'
 # alias ssh-agent='SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"; ssh-agent -a $SSH_AUTH_SOCK'
-alias fixgpu='rm -rf /home/daniel/.config/google-chrome/GrShaderCache/* /home/daniel/.config/google-chrome/ShaderCache/* /home/daniel/.steam/steam/config/htmlcache/* /home/daniel/.steam/steam/steamapps/shadercache/* /home/daniel/.steam/steam/appcache/httpcache/* rm -rf /home/daniel/.steam/steam/steamapps/shadercache/* /home/daniel/.steam/steam/cached/* /home/daniel/.steam/steam/depotcache/* /home/daniel/.steam/steam/appcache/httpcache/*'
+alias fixgpu='rm -rf ~/.config/google-chrome/GrShaderCache/* ~/.config/google-chrome/ShaderCache/* ~/.steam/steam/config/htmlcache/* ~/.steam/steam/steamapps/shadercache/* ~/.steam/steam/appcache/httpcache/* rm -rf ~/.steam/steam/steamapps/shadercache/* ~/.steam/steam/cached/* ~/.steam/steam/depotcache/* ~/.steam/steam/appcache/httpcache/*'
 alias gpass='< /dev/urandom tr -dc A-Za-z0-9\$\^\!\@\.\- | head -c25; echo'
 # alias keepassxc-cli='flatpak run --command=keepassxc-cli org.keepassxc.KeePassXC "$@"'
 alias k=kubectl
@@ -50,12 +50,13 @@ starttransfer:  %{time_starttransfer}s\n\
 
 mkcd() { mkdir -p $1 && cd $1; }
 myrsync() {
-  echo "Sincronizando $1 en $2"
+  echo "Sync $1 en $2"
   rsync "$1" "$2" -Pahv --prune-empty-dirs --ignore-errors --ignore-existing --exclude="*~" && echo "Todo OK" || echo "NOOO Todo esta OK"
 }
 aget() {
   apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances --no-pre-depends $@ | grep "^\w")
 }
+# hazle cat *.yaml
 hazle() {
   find . -type f -name "$2" -print0 | xargs -0 $1
 }
@@ -101,6 +102,17 @@ mylab() {
   mkdir -p ~/C0D3/Python
   cd ~/C0D3/Python
   new_lab
+}
+
+xlab() {
+  if [ -f ~/C0D3/Python/.venv/bin/activate ]; then
+    source ~/C0D3/Python/.venv/bin/activate
+  else
+    mkdir -p ~/C0D3/Python
+    cd ~/C0D3/Python
+    new_venv
+    cd -
+  fi
 }
 
 new_ansible_role() {

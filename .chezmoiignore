@@ -14,3 +14,7 @@ Library/*
 {{- if not (stat (joinPath (env "HOME") ".config/chezmoi/key.txt")) -}}
 .config/sops/age/keys.txt.age
 {{- end -}}
+{{ if ne .chezmoi.os "linux" -}}
+dot_config/systemd/user/home-daniel-C0D3-Remote.mount
+dot_config/private_baloofilerc
+{{ end -}}
