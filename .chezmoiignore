@@ -17,4 +17,6 @@ Library/*
 {{ if ne .chezmoi.os "linux" -}}
 dot_config/systemd/user/home-daniel-C0D3-Remote.mount
 dot_config/private_baloofilerc
+.face
+.face.icon
 {{ end -}}

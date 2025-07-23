@@ -89,3 +89,6 @@
   email = "dxas90@gmail.com"
   name = "Daniel Ramirez"
   signingKey = "~/.ssh/id_rsa.pub"
+
+[includeIf "gitdir/i:~/C0D3/PAS/"]
+    path = ~/C0D3/PAS/.gitconfig
