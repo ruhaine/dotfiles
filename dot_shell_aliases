@@ -37,7 +37,7 @@ alias wget='/usr/bin/wget -U "5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML,
 alias youd="yt-dlp --no-playlist -f 'bestvideo[height<=?1080]+bestaudio/best' -o '%(title)s.%(ext)s'"
 
 curl_time() {
-    curl -so /dev/null -w "\
+  curl -so /dev/null -w "\
    namelookup:  %{time_namelookup}s\n\
       connect:  %{time_connect}s\n\
    appconnect:  %{time_appconnect}s\n\
@@ -85,17 +85,17 @@ new_venv() {
     exit 1
   fi
   if [ -f "requirements.txt" ]; then
-      $UV_IS_HERE pip install -r requirements.txt
+    $UV_IS_HERE pip install -r requirements.txt
   fi
   if [ -f "pyproject.toml" ]; then
-      $UV_IS_HERE pip install -e .
+    $UV_IS_HERE pip install -e .
   fi
 }
 
 new_lab() {
-  new_venv && \
-  $UV_IS_HERE pip install -U numpy pandas matplotlib scikit-learn requests jupyterlab && \
-  jupyter lab --browser any
+  new_venv &&
+    $UV_IS_HERE pip install -U numpy pandas matplotlib scikit-learn requests jupyterlab &&
+    jupyter lab --browser any
 }
 
 mylab() {
@@ -124,6 +124,14 @@ new_ansible_role() {
   touch roles/$1/vars/main.yml        #  <-- variables associated with this role
   touch roles/$1/defaults/main.yml    #  <-- default lower priority variables for this role
   touch roles/$1/meta/main.yml        #  <-- role dependencies
+}
+
+prepend_path() {
+  case ":$PATH:" in
+  *:"$1":*) ;; # already in PATH
+  *) PATH="$1:$PATH" ;;
+  esac
+  export PATH
 }
 
 # ex: ts=4 sw=4 et filetype=sh
