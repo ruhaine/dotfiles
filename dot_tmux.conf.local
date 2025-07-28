@@ -6,7 +6,7 @@
 #         without any warranty.
 #         Copyright 2012— Gregory Pakosz (@gpakosz).
 
-set-option -g default-command "exec /bin/env bash -l -c 'source ~/.bashrc; $SHELL'"
+set-option -g default-command "exec bash -l -c 'source ~/.bashrc; $SHELL'"
 
 # -- bindings ------------------------------------------------------------------
 
