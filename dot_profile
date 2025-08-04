@@ -23,7 +23,7 @@ OS_TYPE="$(uname -s)"
 
 # Fallback for XDG_RUNTIME_DIR on macOS
 if [[ "$OS_TYPE" == "Darwin" ]]; then
-  export XDG_RUNTIME_DIR="${TMPDIR:-/tmp}/xdg-run-${UID}"
+  export XDG_RUNTIME_DIR="${TMPDIR:-/tmp/}xdg-${UID}"
 else
   export XDG_RUNTIME_DIR="/run/user/$UID"
 fi
