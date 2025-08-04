@@ -1,11 +1,3 @@
-[".linkerd2/bin/linkerd"]
-  type = "file"
-  url = "https://github.com/linkerd/linkerd2/releases/download/edge-{{ .tools.linkerd2.version }}/linkerd2-cli-edge-{{ .tools.linkerd2.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
-  executable = true
-[".linkerd2/bin/linkerd-smi"]
-  type = "file"
-  url = '{{ gitHubLatestReleaseAssetURL "linkerd/linkerd-smi" (printf "linkerd-smi-*-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
-  executable = true
 [".local/bin/bws"]
   type = "archive-file"
   path = "bws"
@@ -23,15 +15,6 @@
 {{ else if eq .chezmoi.os "linux" -}}
   url = '{{ gitHubLatestReleaseAssetURL "gohugoio/hugo" (printf "hugo_extended_withdeploy_*%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) }}'
 {{ end -}}
-[".local/bin"]
-  type = "archive"
-  exact = false
-  stripComponents = 1
-{{ if eq .chezmoi.os "darwin" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "nushell/nushell" (printf "nu-*-aarch64-apple-%s.tar.gz" .chezmoi.os) }}'
-{{ else if eq .chezmoi.os "linux" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "nushell/nushell" (printf "nu-*-x86_64-unknown-%s-gnu*" .chezmoi.os) }}'
-{{ end -}}
 [".local/bin/autok3s"]
   type = "file"
   executable = true
@@ -48,21 +31,6 @@
   type = "file"
   url = '{{ gitHubLatestReleaseAssetURL "argoproj/argo-cd" (printf "argocd-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
   executable = true
-{{ if eq .chezmoi.os "linux" -}}
-[".local/bin/kopia"]
-  type = "archive-file"
-  url = "https://github.com/kopia/kopia/releases/download/v{{ .tools.kopia.version }}/kopia-{{ .tools.kopia.version }}-{{ .chezmoi.os }}-x64.tar.gz"
-  executable = true
-  path = "kopia-{{ .tools.kopia.version }}-{{ .chezmoi.os }}-x64/kopia"
-{{ end -}}
-[".local/bin/git-credential-keepassxc"]
-  type = "archive-file"
-  path = "git-credential-keepassxc"
-{{ if eq .chezmoi.os "darwin" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "Frederick888/git-credential-keepassxc" (printf "*macos*full*") }}'
-{{ else if eq .chezmoi.os "linux" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "Frederick888/git-credential-keepassxc" (printf "*ubuntu*full*") }}'
-{{ end -}}
 {{ if eq .chezmoi.os "linux" -}}
 [".local/bin/jq"]
   type = "file"
@@ -130,18 +98,6 @@
   type = "file"
   url = '{{ gitHubLatestReleaseAssetURL "mikefarah/yq" (printf "yq_%s_%s*" .chezmoi.os .chezmoi.arch ) }}'
   executable = true
-{{ if eq .chezmoi.os "linux" -}}
-[".local/bin/vagrant"]
-  type = "archive-file"
-  url = "https://releases.hashicorp.com/vagrant/{{ .tools.vagrant.version }}/vagrant_{{ .tools.vagrant.version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.zip"
-  path = "vagrant"
-  executable = true
-[".local/bin/rclone"]
-  type = "archive-file"
-  url = "https://downloads.rclone.org/v{{ .tools.rclone.version }}/rclone-v{{ .tools.rclone.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.zip"
-  path = "rclone-v{{ .tools.rclone.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}/rclone"
-  executable = true
-{{ end -}}
 [".local/bin/docker-compose"]
   type = "file"
   executable = true
@@ -215,11 +171,6 @@
   path = "ripgrep-{{ $rgVersion }}-x86_64-unknown-{{ .chezmoi.os }}-musl/rg"
 {{ end -}}
 {{ if eq .chezmoi.os "linux" -}}
-[".local/bin/speedtest"]
-  type = "archive-file"
-  url = "https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-x86_64.tgz"
-  path = "speedtest"
-  executable = true
 [".local/bin/eza"]
   type = "archive-file"
   url = '{{ gitHubLatestReleaseAssetURL "eza-community/eza" (printf "eza_x86_64-unknown-%s-gnu.zip" .chezmoi.os) }}'
@@ -235,15 +186,6 @@
   url = '{{ gitHubLatestReleaseAssetURL "adobe-fonts/source-code-pro" (printf "OTF-source-code-pro-*.zip") }}'
   exact = false
   stripComponents = 1
-{{ end -}}
-[".local/"]
-  type = "archive"
-  exact = false
-  stripComponents = 1
-{{ if eq .chezmoi.os "darwin" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "neovim/neovim" (printf "nvim-macos-*%s.tar.gz" .chezmoi.arch) }}'
-{{ else if eq .chezmoi.os "linux" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "neovim/neovim" (printf "nvim-*%s-x86_64.tar.gz" .chezmoi.os) }}'
 {{ end -}}
 # curl -LsSf https://astral.sh/uv/install.sh | sh
 [".local/bin/uv"]
@@ -272,14 +214,6 @@
   exact = false
   stripComponents = 1
 
-[".local/bin/operator-sdk"]
-  type = "file"
-  url = '{{ gitHubLatestReleaseAssetURL "operator-framework/operator-sdk" (printf "operator-sdk_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
-  executable = true
-[".local/bin/helm-operator"]
-  type = "file"
-  url = '{{ gitHubLatestReleaseAssetURL "operator-framework/operator-sdk" (printf "helm-operator_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
-  executable = true
 [".local/google-cloud-sdk"]
   type = "archive"
   exact = false
@@ -308,11 +242,6 @@ url = "https://github.com/pyenv/pyenv.git"
   executable = true
   url = '{{ gitHubLatestReleaseAssetURL "kubernetes-sigs/krew" (printf "krew-%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) }}'
   path = "./krew-{{ .chezmoi.os }}_{{ .chezmoi.arch }}"
-[".local/bin/minikube"]
-  type = "file"
-  executable = true
-  url = '{{ gitHubLatestReleaseAssetURL "kubernetes/minikube" (printf "minikube-%s-%s" .chezmoi.os .chezmoi.arch) }}'
-
 [".local/bin/croc"]
   type = "archive-file"
   executable = true
