@@ -2,9 +2,10 @@
 Host *
   ServerAliveInterval 30                                     # Keep connections alive every 30 seconds
   ServerAliveCountMax 120                                    # Disconnect after ~60 minutes of no response
-  StrictHostKeyChecking no                                   # Disable strict key checking (for flexibility)
+  # Disable strict key checking (for flexibility)
+  StrictHostKeyChecking no
   ControlMaster auto                                         # Enable multiplexing
-  ControlPath ~/.ssh/control-sockets/%r@%h-%p                # Path for the multiplexing socket
+  ControlPath ~/.ssh/control-sockets/%r-%C                   # Path for the multiplexing socket
   ControlPersist 600                                         # Keep multiplexed sessions open for 10 minutes
   AddKeysToAgent yes                                         # Automatically add keys to the SSH agent
   ForwardAgent yes                                           # Forward the authentication agent connection
