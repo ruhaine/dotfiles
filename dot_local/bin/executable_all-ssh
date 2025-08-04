@@ -1,5 +1,0 @@
-#!/bin/bash
-
-ssh-add -K
-ssh-add
-ssh-add ~/.ssh/forgejo
