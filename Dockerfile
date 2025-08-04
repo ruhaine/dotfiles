@@ -1,5 +1,5 @@
 #syntax=docker/dockerfile:1.4
-#docker buildx build --platform linux/arm64 -t ruhaine/coder-chezmoi:latest . --build-arg GITHUB_TOKEN=ghp_xxxxxxxxx --build-arg GITHUB_USERNAME=xxxxx --no-cache
+#docker buildx build --platform linux/arm64,linux/amd64 -t dxas90/coder-chezmoi:latest . --build-arg GITHUB_TOKEN=ghp_xxxxxxxxx --build-arg GITHUB_USERNAME=xxxxx --no-cache
 FROM codercom/enterprise-base:ubuntu as base
 
 ARG GITHUB_TOKEN \

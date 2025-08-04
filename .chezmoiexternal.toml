@@ -1,50 +1,6 @@
-[".local/bin/bws"]
-  type = "archive-file"
-  path = "bws"
-  executable = true
-{{ if eq .chezmoi.os "darwin" -}}
-  url = 'https://github.com/bitwarden/sdk-sm/releases/download/bws-v{{ .tools.bws.version }}/bws-aarch64-apple-{{ .chezmoi.os }}-{{ .tools.bws.version }}.zip'
-{{ else if eq .chezmoi.os "linux" -}}
-  url = 'https://github.com/bitwarden/sdk-sm/releases/download/bws-v{{ .tools.bws.version }}/bws-x86_64-unknown-{{ .chezmoi.os }}-gnu-{{ .tools.bws.version }}.zip'
-{{ end -}}
-[".local/bin/hugo"]
-  type = "archive-file"
-  path = "hugo"
-{{ if eq .chezmoi.os "darwin" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "gohugoio/hugo" (printf "hugo_*_*%s-universal.tar.gz" .chezmoi.os) }}'
-{{ else if eq .chezmoi.os "linux" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "gohugoio/hugo" (printf "hugo_extended_withdeploy_*%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) }}'
-{{ end -}}
-[".local/bin/autok3s"]
-  type = "file"
-  executable = true
-  url = '{{ gitHubLatestReleaseAssetURL "cnrancher/autok3s" (printf "autok3s_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
-[".local/bin/cloudflared"]
-  type = "file"
-  url = "https://github.com/cloudflare/cloudflared/releases/download/{{ .tools.cloudflared.version }}/cloudflared-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
-  executable = true
-[".local/bin/devspace"]
-  type = "file"
-  url = '{{ gitHubLatestReleaseAssetURL "loft-sh/devspace" (printf "devspace-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
-  executable = true
-[".local/bin/argocd"]
-  type = "file"
-  url = '{{ gitHubLatestReleaseAssetURL "argoproj/argo-cd" (printf "argocd-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
-  executable = true
-{{ if eq .chezmoi.os "linux" -}}
 [".local/bin/jq"]
   type = "file"
   url = '{{ gitHubLatestReleaseAssetURL "jqlang/jq" (printf "jq-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
-  executable = true
-{{ end -}}
-[".local/bin/terraform"]
-  type = "archive-file"
-  url = "https://releases.hashicorp.com/terraform/{{ .tools.terraform.version }}/terraform_{{ .tools.terraform.version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.zip"
-  path = "terraform"
-  executable = true
-[".local/bin/terragrunt"]
-  type = "file"
-  url = '{{ gitHubLatestReleaseAssetURL "gruntwork-io/terragrunt" (printf "terragrunt_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
   executable = true
 [".local/bin/direnv"]
   type = "file"
@@ -59,14 +15,6 @@
   url = '{{ gitHubLatestReleaseAssetURL "int128/kubelogin" (printf "kubelogin_%s_%s.zip" .chezmoi.os .chezmoi.arch) }}'
   executable = true
   path = "kubelogin"
-[".local/bin/k3d"]
-  type = "file"
-  url = '{{ gitHubLatestReleaseAssetURL "k3d-io/k3d" (printf "k3d-%s-%s*" .chezmoi.os .chezmoi.arch) }}'
-  executable = true
-[".local/bin/kind"]
-  type = "file"
-  url = '{{ gitHubLatestReleaseAssetURL "kubernetes-sigs/kind" (printf "kind-%s-%s*" .chezmoi.os .chezmoi.arch) }}'
-  executable = true
 [".local/bin/k9s"]
   type = "archive-file"
   executable = true
@@ -89,11 +37,6 @@
   type = "file"
   url = '{{ gitHubLatestReleaseAssetURL "loft-sh/vcluster" (printf "vcluster-%s-%s*" .chezmoi.os .chezmoi.arch ) }}'
   executable = true
-[".local/bin/task"]
-  type = "archive-file"
-  url = "https://github.com/go-task/task/releases/download/v{{ .tools.go_task.version }}/task_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
-  path = "task"
-  executable = true
 [".local/bin/yq"]
   type = "file"
   url = '{{ gitHubLatestReleaseAssetURL "mikefarah/yq" (printf "yq_%s_%s*" .chezmoi.os .chezmoi.arch ) }}'
@@ -106,20 +49,6 @@
 {{ else if eq .chezmoi.os "linux" -}}
   url = '{{ gitHubLatestReleaseAssetURL "docker/compose" (printf "docker-compose-%s-x86_64*" .chezmoi.os ) }}'
 {{ end -}}
-[".local/bin/zoxide"]
-  type = "archive-file"
-  executable = true
-  path = "zoxide"
-{{ if eq .chezmoi.os "darwin" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "ajeetdsouza/zoxide" (printf "*aarch64-apple-%s.tar.gz" .chezmoi.os) }}'
-{{ else if eq .chezmoi.os "linux" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "ajeetdsouza/zoxide" (printf "*x86_64-unknown-%s-musl*" .chezmoi.os) }}'
-{{ end -}}
-[".local/bin/helm"]
-  type = "archive-file"
-  url = "https://get.helm.sh/helm-v{{ .tools.helm.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
-  executable = true
-  path = "{{ .chezmoi.os }}-{{ .chezmoi.arch }}/helm"
 [".local/bin/lazygit"]
   type = "archive-file"
   executable = true
@@ -129,64 +58,9 @@
 {{ else if eq .chezmoi.os "linux" -}}
   url = '{{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "*linux_x86_64*" ) }}'
 {{ end -}}
-
-[".local/bin/flux"]
-  type = "archive-file"
-  url = "https://github.com/fluxcd/flux2/releases/download/v{{ .tools.flux.version }}/flux_{{ .tools.flux.version }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
-  path = "flux"
-  executable = true
-[".local/bin/bat"]
-  type = "archive-file"
-  {{ $batVersion := (gitHubLatestRelease "sharkdp/bat").TagName }}
-  executable = true
-{{ if eq .chezmoi.os "darwin" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "sharkdp/bat" (printf "*aarch64-apple-%s*" .chezmoi.os ) }}'
-  path = "bat-{{ $batVersion }}-aarch64-apple-{{ .chezmoi.os }}/bat"
-{{ else if eq .chezmoi.os "linux" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "sharkdp/bat" (printf "*x86_64-unknown-%s-gnu*" .chezmoi.os ) }}'
-  path = "bat-{{ $batVersion }}-x86_64-unknown-{{ .chezmoi.os }}-gnu/bat"
-{{ end -}}
-[".local/bin/fzf"]
-  type = "archive-file"
-  url = '{{ gitHubLatestReleaseAssetURL "junegunn/fzf" (printf "*%s_%s*" .chezmoi.os .chezmoi.arch) }}'
-  path = "fzf"
-[".local/bin/fd"]
-  type = "archive-file"
-  {{ $fdVersion := (gitHubLatestRelease "sharkdp/fd").TagName }}
-{{ if eq .chezmoi.os "darwin" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "sharkdp/fd" (printf "fd-*-aarch64-apple-%s*" .chezmoi.os) }}'
-  path = "fd-{{ $fdVersion }}-aarch64-apple-{{ .chezmoi.os }}/fd"
-{{ else if eq .chezmoi.os "linux" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "sharkdp/fd" (printf "fd-*-x86_64-unknown-%s-gnu*" .chezmoi.os) }}'
-  path = "fd-{{ $fdVersion }}-x86_64-unknown-{{ .chezmoi.os }}-gnu/fd"
-{{ end -}}
-[".local/bin/rg"]
-  type = "archive-file"
-  {{ $rgVersion := (gitHubLatestRelease "BurntSushi/ripgrep").TagName }}
-{{ if eq .chezmoi.os "darwin" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "BurntSushi/ripgrep" (printf "*-aarch64-apple-%s*" .chezmoi.os ) }}'
-  path = "ripgrep-{{ $rgVersion }}-aarch64-apple-{{ .chezmoi.os }}/rg"
-{{ else if eq .chezmoi.os "linux" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "BurntSushi/ripgrep" (printf "*x86_64-unknown-%s-musl*" .chezmoi.os ) }}'
-  path = "ripgrep-{{ $rgVersion }}-x86_64-unknown-{{ .chezmoi.os }}-musl/rg"
-{{ end -}}
-{{ if eq .chezmoi.os "linux" -}}
-[".local/bin/eza"]
-  type = "archive-file"
-  url = '{{ gitHubLatestReleaseAssetURL "eza-community/eza" (printf "eza_x86_64-unknown-%s-gnu.zip" .chezmoi.os) }}'
-  path = "eza"
-  executable = true
-{{ end -}}
 [".tmux.conf"]
   type = "file"
   url = 'https://raw.githubusercontent.com/gpakosz/.tmux/refs/heads/master/.tmux.conf'
-{{ if eq .chezmoi.os "linux" -}}
-[".local/share/fonts"]
-  type = "archive"
-  url = '{{ gitHubLatestReleaseAssetURL "adobe-fonts/source-code-pro" (printf "OTF-source-code-pro-*.zip") }}'
-  exact = false
-  stripComponents = 1
-{{ end -}}
 # curl -LsSf https://astral.sh/uv/install.sh | sh
 [".local/bin/uv"]
   type = "archive-file"
@@ -208,65 +82,7 @@
   url = '{{ gitHubLatestReleaseAssetURL "astral-sh/uv" (printf "uv-x86_64-unknown-%s-gnu.tar.gz" .chezmoi.os) }}'
   path = "uv-x86_64-unknown-{{ .chezmoi.os }}-gnu/uvx"
 {{ end -}}
-[".local/go"]
-  type = "archive"
-  url = "https://go.dev/dl/go{{ .tools.go.version }}.{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
-  exact = false
-  stripComponents = 1
-
-[".local/google-cloud-sdk"]
-  type = "archive"
-  exact = false
-  stripComponents = 1
-{{ if eq .chezmoi.os "darwin" -}}
-  url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-darwin-arm.tar.gz"
-{{ else if eq .chezmoi.os "linux" -}}
-  url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz"
-{{ end -}}
 [".pyenv"]
 type = "git-repo"
 url = "https://github.com/pyenv/pyenv.git"
-[".local/bin/k6"]
-  type = "archive-file"
-  executable = true
-{{ $k6sVersion := (gitHubLatestRelease "grafana/k6").TagName }}
-{{ if eq .chezmoi.os "darwin" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "grafana/k6" (printf "k6-*-macos-%s.zip" .chezmoi.arch) }}'
-  path = "k6-{{ $k6sVersion }}-macos-{{ .chezmoi.arch }}/k6"
-{{ else if eq .chezmoi.os "linux" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "grafana/k6" (printf "k6-*-%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) }}'
-  path = "k6-{{ $k6sVersion }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}/k6"
-{{ end -}}
-[".local/bin/kubectl-krew"]
-  type = "archive-file"
-  executable = true
-  url = '{{ gitHubLatestReleaseAssetURL "kubernetes-sigs/krew" (printf "krew-%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) }}'
-  path = "./krew-{{ .chezmoi.os }}_{{ .chezmoi.arch }}"
-[".local/bin/croc"]
-  type = "archive-file"
-  executable = true
-  path = "croc"
-{{ if eq .chezmoi.os "darwin" -}}
-  url = {{ gitHubLatestReleaseAssetURL "schollz/croc" "croc_v*_macOS-ARM64.tar.gz" | quote }}
-{{ else if eq .chezmoi.os "linux" -}}
-  url = {{ gitHubLatestReleaseAssetURL "schollz/croc" "croc_v*_Linux-64bit.tar.gz" | quote }}
-{{ end -}}
-[".local/bin/glow"]
-    type = "archive-file"
-    executable = true
-    stripComponents = 1
-    path = "glow"
-{{ if eq .chezmoi.os "darwin" -}}
-    url = {{ gitHubLatestReleaseAssetURL "charmbracelet/glow" "glow_*_Darwin_arm64.tar.gz" | quote }}
-{{ else if eq .chezmoi.os "linux" -}}
-    url = {{ gitHubLatestReleaseAssetURL "charmbracelet/glow" "glow_*_Linux_x86_64.tar.gz" | quote }}
-{{ end -}}
-[".local/bin/vault"]
-  type = "archive-file"
-  executable = true
-{{ $vaultVersionRaw := (gitHubLatestRelease "hashicorp/vault").TagName }}
-{{ $vaultVersion := trimPrefix "v" $vaultVersionRaw }}
-  url = 'https://releases.hashicorp.com/vault/{{ $vaultVersion }}/vault_{{ $vaultVersion }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.zip'
-  path = "vault"
-
 # ex: ts=4 sw=4 et filetype=toml
