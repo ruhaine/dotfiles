@@ -171,9 +171,9 @@
   executable = true
   path = "lazygit"
 {{ if eq .chezmoi.os "darwin" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "*Darwin_x86_64*" ) }}'
+  url = '{{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "*darwin_x86_64*" ) }}'
 {{ else if eq .chezmoi.os "linux" -}}
-  url = '{{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "*Linux_x86_64*" ) }}'
+  url = '{{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" (printf "*linux_x86_64*" ) }}'
 {{ end -}}
 
 [".local/bin/flux"]
