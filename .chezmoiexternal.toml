@@ -1,4 +1,3 @@
-{{- if .extra_tools -}} # extra_tools
 [".linkerd2/bin/linkerd"]
   type = "file"
   url = "https://github.com/linkerd/linkerd2/releases/download/edge-{{ .tools.linkerd2.version }}/linkerd2-cli-edge-{{ .tools.linkerd2.version }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
@@ -64,7 +63,6 @@
 {{ else if eq .chezmoi.os "linux" -}}
   url = '{{ gitHubLatestReleaseAssetURL "Frederick888/git-credential-keepassxc" (printf "*ubuntu*full*") }}'
 {{ end -}}
-{{ end -}} # extra_tools
 {{ if eq .chezmoi.os "linux" -}}
 [".local/bin/jq"]
   type = "file"
@@ -246,18 +244,6 @@
   url = '{{ gitHubLatestReleaseAssetURL "neovim/neovim" (printf "nvim-macos-*%s.tar.gz" .chezmoi.arch) }}'
 {{ else if eq .chezmoi.os "linux" -}}
   url = '{{ gitHubLatestReleaseAssetURL "neovim/neovim" (printf "nvim-*%s-x86_64.tar.gz" .chezmoi.os) }}'
-{{ end -}}
-{{ if eq .chezmoi.os "linux" -}}
-[".local/bin/rbw"]
-  type = "archive-file"
-  url = '{{ gitHubLatestReleaseAssetURL "doy/rbw" (printf "rbw_*_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
-  path = "rbw"
-  executable = true
-[".local/bin/rbw-agent"]
-  type = "archive-file"
-  url = '{{ gitHubLatestReleaseAssetURL "doy/rbw" (printf "rbw_*_%s_%s*" .chezmoi.os .chezmoi.arch) }}'
-  path = "rbw-agent"
-  executable = true
 {{ end -}}
 # curl -LsSf https://astral.sh/uv/install.sh | sh
 [".local/bin/uv"]
