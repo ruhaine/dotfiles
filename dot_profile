@@ -14,40 +14,6 @@ if [ -n "$ZSH_VERSION" ]; then
     fi
 fi
 
-export GOROOT=$HOME/.local/go
-export GOPROXY="https://proxy.golang.org|direct"
-export GO111MODULE="on"
-
-# Determine OS
-OS_TYPE="$(uname -s)"
-
-# Fallback for XDG_RUNTIME_DIR on macOS
-if [[ "$OS_TYPE" == "Darwin" ]]; then
-  export XDG_RUNTIME_DIR="${TMPDIR:-/tmp/}xdg-${UID}"
-else
-  export XDG_RUNTIME_DIR="/run/user/$UID"
-fi
-
-mkdir -p $XDG_RUNTIME_DIR
-
-export XDG_CONFIG_HOME=${HOME}/.config
-export XDG_CACHE_HOME=${HOME}/.cache
-export XDG_DATA_HOME=${HOME}/.local/share
-export XDG_STATE_HOME=${HOME}/.local/state
-# D-Bus session bus address (mostly relevant to Linux)
-if [[ "$OS_TYPE" != "Darwin" ]]; then
-  export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
-fi
-
-export LANG=en_US.UTF-8
-export VISUAL=nvim
-export EDITOR="$VISUAL"
-export GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ${HOME}/.ssh/id_ed25519"
-
-export DOCKER_CLI_EXPERIMENTAL="enabled"
-export GS_OPTIONS="-sPAPERSIZE=a4"
-export MY_SHELL="$(ps -p $$ -o comm= | sed 's/^-//')" # old only linux basename $(readlink /proc/$$/exe)
-export TMUX_TMPDIR="${XDG_RUNTIME_DIR:-"/run/user/$(id -u)"}"
 export PYENV_ROOT="$HOME/.pyenv"
 
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
@@ -56,12 +22,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$HOME/.local/bin:${KREW_ROOT:-$HOME/.krew}/bin:$HOME/.linkerd2/bin:$HOME/.local/go/bin${PATH:+:}$PATH"
 
 # export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! "$SSH_AUTH_SOCK" ]]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
 
 mesg n || true
