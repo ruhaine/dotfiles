@@ -13,7 +13,7 @@ RUN sudo apt-get update && \
 FROM codercom/enterprise-base:ubuntu as dev
 
 RUN sudo apt-get update && \
-    sudo apt-get install curl unzip git wget busybox && \
+    sudo apt-get install -y curl unzip git wget busybox && \
     curl -sS https://starship.rs/install.sh | STARSHIP_INSTALL=true sh -s -- -y && \
     sudo rm -rf /var/lib/apt/lists/* && \
     sudo mkdir -p /run/user/1000 && sudo chown 1000:1000 /run/user/1000 && \
