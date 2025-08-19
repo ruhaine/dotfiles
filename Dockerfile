@@ -1,6 +1,6 @@
 #syntax=docker/dockerfile:1.4
 #docker buildx build --platform linux/arm64,linux/amd64 -t dxas90/coder-chezmoi:latest . --build-arg GITHUB_TOKEN=ghp_xxxxxxxxx --build-arg GITHUB_USERNAME=xxxxx --no-cache
-FROM codercom/enterprise-base:ubuntu as base
+FROM codercom/enterprise-base:ubuntu AS base
 
 ARG GITHUB_TOKEN \
     GITHUB_USERNAME
@@ -10,7 +10,7 @@ RUN sudo apt-get update && \
     sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ${HOME}/.local/bin init --apply ${GITHUB_USERNAME:-} && \
     sudo rm -rf ~/.cache
 
-FROM codercom/enterprise-base:ubuntu as dev
+FROM codercom/enterprise-base:ubuntu AS dev
 
 RUN sudo apt-get update && \
     sudo apt-get install -y curl unzip git wget busybox && \
